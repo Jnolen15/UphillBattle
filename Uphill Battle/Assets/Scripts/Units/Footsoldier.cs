@@ -4,23 +4,8 @@ using UnityEngine;
 
 public class Footsoldier : UnitClass
 {
-    private UnitControl uc;
     [Header("Footsoldier variables")]
     [SerializeField] private float cooldown;
-    [SerializeField] private bool touchingEnemy;
-    [SerializeField] private GameObject attackRangeCol;
-    [SerializeField] private GameObject agroRangeCol;
-
-    private void Start()
-    {
-        uc = GetComponent<UnitControl>();
-
-        attackRangeCol = transform.GetChild(1).gameObject;
-        attackRangeCol.transform.localScale = new Vector3(attackRange, attackRange, attackRange);
-
-        agroRangeCol = transform.GetChild(2).gameObject;
-        agroRangeCol.transform.localScale = new Vector3(agroRange, agroRange, agroRange);
-    }
 
     private void Update()
     {

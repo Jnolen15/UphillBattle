@@ -8,6 +8,8 @@ public class UnitControl : MonoBehaviour
     private UnitClass unit;
     [SerializeField] private Vector3 destination;
     private GameObject SelectionIdentifier;
+    private GameObject attackRangeCol;
+    private GameObject agroRangeCol;
     public GameObject target;
     public bool hasAgro;
 
@@ -28,6 +30,12 @@ public class UnitControl : MonoBehaviour
         unit = this.GetComponent<UnitClass>();
 
         SelectionIdentifier = transform.GetChild(0).gameObject;
+
+        attackRangeCol = transform.GetChild(1).gameObject;
+        attackRangeCol.transform.localScale = new Vector3(unit.attackRange, unit.attackRange, unit.attackRange);
+
+        agroRangeCol = transform.GetChild(2).gameObject;
+        agroRangeCol.transform.localScale = new Vector3(unit.agroRange, unit.agroRange, unit.agroRange);
     }
 
     private void Update()
