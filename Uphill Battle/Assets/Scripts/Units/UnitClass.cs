@@ -4,15 +4,25 @@ using UnityEngine;
 
 public abstract class UnitClass : MonoBehaviour
 {
+    [Header("Unit variables")]
     public int hp;
     public int dmg;
     public float attackCooldown;
+    public float attackRange;
+    public float agroRange;
     public float movSpeed;
+
+    public enum Type
+    {
+        Melee,
+        Range
+    }
+    private Type type;
+    public new Type GetType() { return type; }
 
     public void MoveTo(Vector3 pos)
     {
         gameObject.GetComponent<UnitControl>().SetDestination(new Vector3(pos.x, transform.position.y, pos.z));
-        //gameObject.GetComponent<Rigidbody>().MovePosition(newPos);
     }
 
     public void TakeDamage(int dmg)

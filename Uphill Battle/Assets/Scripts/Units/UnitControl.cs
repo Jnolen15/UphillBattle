@@ -1,44 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UnitControl : MonoBehaviour
 {
-    public bool isEnemy;
-
     private UnitClass unit;
-    [SerializeField] private bool destinationReached;
     [SerializeField] private Vector3 destination;
-    [SerializeField] private float cooldown;
     private GameObject SelectionIdentifier;
+    public GameObject target;
+    public bool hasAgro;
+
+    [SerializeField] private GameObject stateText;
+
+    public enum State
+    {
+        Idle,
+        Moving,
+        Attack,
+        Agro
+    }
+    private State state;
+    public State GetState() { return state; }
 
     private void Start()
     {
         unit = this.GetComponent<UnitClass>();
-        
-        if(!isEnemy)
-            SelectionIdentifier = transform.GetChild(0).gameObject;
+
+        SelectionIdentifier = transform.GetChild(0).gameObject;
     }
 
     private void Update()
     {
-        // MOVEMENT
-        if (!destinationReached)
+        UpdateStateText();
+
+        switch (state)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination, unit.movSpeed * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, destination) < 0.1f)
-                destinationReached = true;
+            default:
+            case State.Idle: 
+                //Nothing
+                break;
+            case State.Moving:
+                transform.position = Vector3.MoveTowards(transform.position, destination, unit.movSpeed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, destination) < 0.1f)
+                    ChangeState(State.Idle);
+                break;
+            case State.Attack:
+                if (target != null)
+                    unit.Attack(target);
+                else
+                {
+                    hasAgro = false;
+                    ChangeState(State.Idle);
+                }
+                break;
+            case State.Agro:
+                if (target != null)
+                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, unit.movSpeed * Time.deltaTime);
+                else
+                {
+                    hasAgro = false;
+                    ChangeState(State.Idle);
+                }
+                break;
         }
-
-        // COOLDOWNS
-        if (cooldown > 0) cooldown -= Time.deltaTime;
     }
 
     public void SetDestination(Vector3 pos)
     {
-        destinationReached = false;
+        ChangeState(State.Moving);
         destination = pos;
+        Debug.Log("Move command given, clearing target");
+        ClearTarget();
     }
 
     public void ToggleSelected(bool toggle)
@@ -46,25 +79,38 @@ public class UnitControl : MonoBehaviour
         SelectionIdentifier.SetActive(toggle);
     }
 
-    private void OnTriggerStay(Collider other)
+    public void ChangeState(State newState)
     {
-        // Enemy attack
-        if (isEnemy)
+        switch (newState)
         {
-            if (other.gameObject.tag == "controlled" && cooldown <= 0)
-            {
-                unit.Attack(other.gameObject);
-                cooldown = unit.attackCooldown;
-            }
+            default:
+            case State.Idle: state = State.Idle; break;
+            case State.Moving: state = State.Moving; break;
+            case State.Attack: state = State.Attack; break;
+            case State.Agro: state = State.Agro; break;
         }
-        // Friendly attack
-        else
-        {
-            if (other.gameObject.tag == "enemy" && cooldown <= 0)
-            {
-                unit.Attack(other.gameObject);
-                cooldown = unit.attackCooldown;
-            }
-        }
+    }
+
+    public void SetTarget(GameObject newtarget)
+    {
+        target = newtarget;
+        hasAgro = true;
+        ChangeState(State.Agro);
+    }
+
+    public void AttackTarget()
+    {
+        ChangeState(State.Attack);
+    }
+
+    public void ClearTarget()
+    {
+        target = null;
+        hasAgro = false;
+    }
+
+    private void UpdateStateText()
+    {
+        stateText.GetComponent<TextMeshPro>().text = state.ToString();
     }
 }
