@@ -22,4 +22,10 @@ public class Footsoldier : UnitClass
             cooldown = attackCooldown;
         }
     }
+
+    public override void Die()
+    {
+        this.GetComponent<Grouping>().RemoveSelf();
+        Destroy(this.gameObject);
+    }
 }

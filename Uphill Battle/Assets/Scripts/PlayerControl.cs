@@ -122,11 +122,11 @@ public class PlayerControl : MonoBehaviour
         var rows = Mathf.CeilToInt(Mathf.Sqrt(numUnits));
         for (int x = 0; x < rows; x++)
         {
-            var zpos = pos.z + (x - (rows/2));
+            var zpos = pos.z + ((x*1.5f) - (rows/2));
 
             for (int z = 0; z < rows; z++)
             {
-                var xpos = pos.x + (z - (rows/2));
+                var xpos = pos.x + ((z*1.5f) - (rows/2));
 
                 positions.Add(new Vector3(xpos, 1, zpos));
 

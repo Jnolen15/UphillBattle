@@ -211,8 +211,8 @@ MonoBehaviour:
   hp: 10
   dmg: 2
   attackCooldown: 1
-  attackRange: 1.4
-  agroRange: 6
+  attackRange: 2
+  agroRange: 8
   movSpeed: 5
   cooldown: 0
 --- !u!114 &3940919810013060788

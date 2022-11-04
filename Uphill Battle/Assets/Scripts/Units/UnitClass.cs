@@ -29,8 +29,10 @@ public abstract class UnitClass : MonoBehaviour
     {
         hp -= dmg;
         if (hp <= 0)
-            Destroy(this.gameObject);
+            Die();
     }
 
     public abstract void Attack(GameObject target);
+
+    public abstract void Die();
 }

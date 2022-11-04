@@ -18,4 +18,14 @@ public class AttackRange : MonoBehaviour
             unitCont.AttackTarget();
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == unitCont.target && unitCont.hasAgro)
+        {
+            Debug.Log("Unit left attack, clearing");
+            unitCont.ClearTarget();
+            unitCont.ChangeState(UnitControl.State.Idle);
+        }
+    }
 }
