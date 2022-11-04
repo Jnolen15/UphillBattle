@@ -5,6 +5,7 @@ using UnityEngine;
 public class AgroRange : MonoBehaviour
 {
     private UnitControl unitCont;
+    public string tagToTarget;
 
     private void Start()
     {
@@ -13,12 +14,25 @@ public class AgroRange : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (UnitControl.State.Idle == unitCont.GetState())
+        if (UnitControl.State.Moving != unitCont.GetState())
         {
-            if (other.gameObject.tag == "enemy" && !unitCont.hasAgro)
+            if (other.gameObject.tag == tagToTarget)
             {
-                Debug.Log("Enemy in Argo Range, Targeting");
-                unitCont.SetTarget(other.gameObject);
+                if (!unitCont.hasAgro || !unitCont.target)
+                {
+                    unitCont.SetTarget(other.gameObject);
+                }
+                // If there is a closer enemy they get agro
+                else if(other.gameObject != unitCont.target)
+                {
+                    var targetDist = Vector3.Distance(transform.position, unitCont.target.transform.position);
+                    var otherDist = Vector3.Distance(transform.position, other.gameObject.transform.position);
+                    if (targetDist > otherDist)
+                    {
+                        unitCont.SetTarget(other.gameObject);
+                    }
+                }
+
             }
         }
     }

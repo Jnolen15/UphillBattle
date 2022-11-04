@@ -15,7 +15,6 @@ public class AttackRange : MonoBehaviour
     {
         if (other.gameObject == unitCont.target && unitCont.hasAgro)
         {
-            Debug.Log("Targeted Enemy in Attack Range");
             unitCont.AttackTarget();
         }
     }

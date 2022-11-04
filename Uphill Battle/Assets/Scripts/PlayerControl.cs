@@ -93,7 +93,8 @@ public class PlayerControl : MonoBehaviour
     {
         foreach (GameObject unit in SelectedUnits)
         {
-            unit.GetComponent<UnitControl>().ToggleSelected(false);
+            if(unit != null)
+                unit.GetComponent<UnitControl>().ToggleSelected(false);
         }
         SelectedUnits.Clear();
     }

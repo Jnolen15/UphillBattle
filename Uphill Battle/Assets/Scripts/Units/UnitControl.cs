@@ -42,6 +42,8 @@ public class UnitControl : MonoBehaviour
     {
         UpdateStateText();
 
+        Debug.DrawRay(transform.position, transform.forward * 5, Color.red);
+
         switch (state)
         {
             default:
@@ -49,13 +51,17 @@ public class UnitControl : MonoBehaviour
                 //Nothing
                 break;
             case State.Moving:
+                LookTo(destination);
                 transform.position = Vector3.MoveTowards(transform.position, destination, unit.movSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, destination) < 0.1f)
                     ChangeState(State.Idle);
                 break;
             case State.Attack:
                 if (target != null)
+                {
+                    LookTo(target.transform.position);
                     unit.Attack(target);
+                }
                 else
                 {
                     hasAgro = false;
@@ -64,7 +70,10 @@ public class UnitControl : MonoBehaviour
                 break;
             case State.Agro:
                 if (target != null)
+                {
+                    LookTo(target.transform.position);
                     transform.position = Vector3.MoveTowards(transform.position, target.transform.position, unit.movSpeed * Time.deltaTime);
+                }
                 else
                 {
                     hasAgro = false;
@@ -78,8 +87,13 @@ public class UnitControl : MonoBehaviour
     {
         ChangeState(State.Moving);
         destination = pos;
-        Debug.Log("Move command given, clearing target");
         ClearTarget();
+    }
+
+    private void LookTo(Vector3 target)
+    {
+        Vector3 targetPos = new Vector3(target.x, transform.position.y, target.z);
+        transform.LookAt(targetPos, Vector3.up);
     }
 
     public void ToggleSelected(bool toggle)
