@@ -28,7 +28,8 @@ public class CardUnit : Card
 
         art.sprite = unit.art;
         art.rectTransform.localPosition = unit.cardArtOffset;
-        //art.rectTransform.position = unit.cardArtOffset;
+        var size = new Vector3(unit.cardArtSize, unit.cardArtSize, unit.cardArtSize);
+        art.rectTransform.localScale = size;
     }
 
     private void Awake()

@@ -23,4 +23,7 @@ public class UnitSO : ScriptableObject
 
     public Sprite art;
     public Vector2 cardArtOffset;
+    public float cardArtSize;
+    public Vector2 tokenArtOffset;
+    public float tokenArtSize;
 }

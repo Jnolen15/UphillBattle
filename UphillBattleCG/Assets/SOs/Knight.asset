@@ -19,5 +19,8 @@ MonoBehaviour:
   title: Knight
   description: When played, gain armor equal to current courage.
   position: 0
-  art: {fileID: 21300000, guid: aa4739fbc686a7c4d844b1e0f6c5ca81, type: 3}
-  cardArtOffset: {x: -11, y: -34}
+  art: {fileID: 21300000, guid: e58e3e846346ab844a76368ad270b4c0, type: 3}
+  cardArtOffset: {x: 0, y: -45}
+  cardArtSize: 0.09
+  tokenArtOffset: {x: 0, y: -150}
+  tokenArtSize: 0.14
