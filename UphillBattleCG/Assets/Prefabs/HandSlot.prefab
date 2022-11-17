@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7581917857077771255}
   - component: {fileID: 7581917857077771254}
   m_Layer: 5
-  m_Name: Slot
+  m_Name: HandSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

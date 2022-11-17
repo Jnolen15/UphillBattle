@@ -6,8 +6,20 @@ using UnityEngine.EventSystems;
 public abstract class Card : MonoBehaviour, 
     IPointerEnterHandler,
     IPointerExitHandler,
-    IPointerClickHandler
+    IDragHandler,
+    IBeginDragHandler,
+    IEndDragHandler
 {
+
+    private GameObject indicator;
+    public PlayerManager playerManager;
+
+    private void Start()
+    {
+        playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
+    }
+
+    // ========== MOUSE CONTROLS ==========
     public void OnPointerEnter(PointerEventData eventData)
     {
         this.transform.parent.GetComponent<HandSlot>().HighlightSlot(true);
@@ -18,13 +30,25 @@ public abstract class Card : MonoBehaviour,
         this.transform.parent.GetComponent<HandSlot>().HighlightSlot(false);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    // ========== DRAG DROP ==========
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        Play();
-        this.transform.parent.GetComponent<HandSlot>().Discard();
+        indicator = Instantiate(Resources.Load<GameObject>("PlayIndicator"), transform.parent.parent);
+        playerManager.HoldingCard(this.gameObject);
     }
 
-    // OVERRIDE CLASSES
+    public void OnDrag(PointerEventData eventData)
+    {
+        indicator.transform.position = eventData.position;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        GameObject.Destroy(indicator);
+        Play();
+    }
+
+    // ========== OVERRIDE CLASSES ==========
     public abstract void SetUp();
 
     public abstract void Play();

@@ -39,6 +39,15 @@ public class CardUnit : Card
 
     public override void Play()
     {
-        Debug.Log("Played card: " + unit.title);
+        // Test if can be played
+        if (playerManager.TryPlayUnitCard(unit))
+        {
+            Debug.Log("Played card: " + unit.title);
+            this.transform.parent.GetComponent<HandSlot>().Discard();
+            playerManager.CardPlayed(this.gameObject);
+        } else
+        {
+            Debug.Log("Card could not be played");
+        }
     }
 }

@@ -44,7 +44,7 @@ public class HandSlot : MonoBehaviour
 
     public void Discard()
     {
-        HighlightSlot(false);
+        //HighlightSlot(false);
         slotedCard.transform.SetParent(this.transform.parent.parent);
         hand.Discard(this.gameObject, slotedCard);
         slotedCard = null;

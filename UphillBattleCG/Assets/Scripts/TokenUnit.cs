@@ -14,8 +14,10 @@ public class TokenUnit : MonoBehaviour
     [SerializeField] private TextMeshProUGUI damage;
     [SerializeField] private Image art;
 
-    public void SetUp()
+    public void SetUp(UnitSO givenUnit)
     {
+        unit = givenUnit;
+
         health.text = unit.health.ToString();
         armor.text = unit.armor.ToString();
         damage.text = unit.damage.ToString();
@@ -24,10 +26,5 @@ public class TokenUnit : MonoBehaviour
         art.rectTransform.localPosition = unit.tokenArtOffset;
         var size = new Vector3(unit.tokenArtSize, unit.tokenArtSize, unit.tokenArtSize);
         art.rectTransform.localScale = size;
-    }
-
-    private void Awake()
-    {
-        if (unit) SetUp();
     }
 }

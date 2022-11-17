@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PlayerHand : MonoBehaviour
+public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public List<GameObject> Hand = new List<GameObject>();
     public List<GameObject> CardSlots = new List<GameObject>();
@@ -86,5 +87,17 @@ public class PlayerHand : MonoBehaviour
             var slotPos = CurCardSlots[right].transform.localPosition;
             CurCardSlots[right].transform.localPosition = new Vector3(slotPos.x + 100, slotPos.y);
         }
+    }
+
+    // Raise hand
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        this.rectTrans.anchoredPosition = new Vector2(0, 100);
+    }
+
+    // Lower hand
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        this.rectTrans.anchoredPosition = new Vector2(0, -60);
     }
 }
