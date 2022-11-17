@@ -5,19 +5,27 @@ using UnityEngine.EventSystems;
 
 public abstract class Card : MonoBehaviour, 
     IPointerEnterHandler,
-    IPointerExitHandler
+    IPointerExitHandler,
+    IPointerClickHandler
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Pointer entered " + gameObject.name);
-        this.transform.localScale = this.transform.localScale * 1.5f;
+        this.transform.parent.GetComponent<HandSlot>().HighlightSlot(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Pointer exited " + gameObject.name);
-        this.transform.localScale = this.transform.localScale / 1.5f;
+        this.transform.parent.GetComponent<HandSlot>().HighlightSlot(false);
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Play();
+        this.transform.parent.GetComponent<HandSlot>().Discard();
+    }
+
+    // OVERRIDE CLASSES
     public abstract void SetUp();
+
+    public abstract void Play();
 }

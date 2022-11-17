@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
 
     void Update()
     {
+        // FOR TESTING RESAONS
         if (Input.GetKeyDown(KeyCode.D))
             DrawCard();
     }
@@ -21,18 +22,47 @@ public class CardManager : MonoBehaviour
     {
         if(Deck.Count > 0)
         {
-            var card = GetRandomCard();
-            Deck.Remove(card);
-            hand.AddCard(card);
+            if (hand.Hand.Count < 5)
+            {
+                var card = GetRandomCard();
+                Deck.Remove(card);
+                hand.AddCard(card);
+            } else
+            {
+                Debug.Log("Hand Full");
+            }
         }
         else
         {
             Debug.Log("Deck is empty");
+            if (Discards.Count > 0)
+            {
+                Debug.Log("Shuffling discards into deck");
+                ShuffleDiscards();
+                DrawCard();
+            }
         }
     }
 
     private GameObject GetRandomCard()
     {
         return (Deck[Random.Range(0, Deck.Count)]);
+    }
+
+    public void Discard(GameObject card)
+    {
+        Discards.Add(card);
+        card.SetActive(false);
+    }
+
+    // Adds discard pile into deck pile
+    private void ShuffleDiscards()
+    {
+        foreach(GameObject card in Discards)
+        {
+            Deck.Add(card);
+        }
+
+        Discards.Clear();
     }
 }

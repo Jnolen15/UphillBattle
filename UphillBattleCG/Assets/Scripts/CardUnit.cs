@@ -36,4 +36,9 @@ public class CardUnit : Card
     {
         if (unit) SetUp();
     }
+
+    public override void Play()
+    {
+        Debug.Log("Played card: " + unit.title);
+    }
 }
