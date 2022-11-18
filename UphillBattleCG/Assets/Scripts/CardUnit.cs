@@ -37,6 +37,12 @@ public class CardUnit : Card
         if (unit) SetUp();
     }
 
+    private void OnEnable()
+    {
+        // Prevents cards scale changing when played quickly
+        this.transform.localScale = new Vector3(0.5f, 0.5f);
+    }
+
     public override void Play()
     {
         // Test if can be played

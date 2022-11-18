@@ -29,6 +29,7 @@ public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             {
                 CardSlots[CardSlots.IndexOf(slot)].GetComponent<HandSlot>().SlotCard(card);
                 CurCardSlots.Add(CardSlots[CardSlots.IndexOf(slot)]);
+                CardSlots[CardSlots.IndexOf(slot)].transform.SetAsLastSibling();
 
                 break;
             }
@@ -64,7 +65,9 @@ public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             else
                 xPos -= 200 * (CurCardSlots.Count / 2);
             var pos = new Vector3(xPos, 0, 0);
-            slot.transform.localPosition = pos;
+            slot.GetComponent<HandSlot>().defaultPos = pos;
+            slot.GetComponent<HandSlot>().AnimateMovement(pos, new Vector2(1, 1));
+            //slot.transform.localPosition = pos;
             count++;
         }
     }
@@ -78,26 +81,52 @@ public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if (left > -1)
         {
-            var slotPos = CurCardSlots[left].transform.localPosition;
-            CurCardSlots[left].transform.localPosition = new Vector3(slotPos.x - 100, slotPos.y);
+            var defaultSlotPos = CurCardSlots[left].GetComponent<HandSlot>().defaultPos;
+            CurCardSlots[left].GetComponent<HandSlot>().AnimateMovement(new Vector3(defaultSlotPos.x - 100, 0), new Vector2(1, 1));
+            //CurCardSlots[left].transform.localPosition = new Vector3(slotPos.x - 100, slotPos.y);
         }
             
         if (right < CurCardSlots.Count)
         {
-            var slotPos = CurCardSlots[right].transform.localPosition;
-            CurCardSlots[right].transform.localPosition = new Vector3(slotPos.x + 100, slotPos.y);
+            var defaultSlotPos = CurCardSlots[right].GetComponent<HandSlot>().defaultPos;
+            CurCardSlots[right].GetComponent<HandSlot>().AnimateMovement(new Vector3(defaultSlotPos.x + 100, 0), new Vector2(1, 1));
+            //CurCardSlots[right].transform.localPosition = new Vector3(slotPos.x + 100, slotPos.y);
         }
     }
 
     // Raise hand
     public void OnPointerEnter(PointerEventData eventData)
     {
-        this.rectTrans.anchoredPosition = new Vector2(0, 100);
+        AnimateHandMovement(new Vector2(0, 100));
+        //this.rectTrans.anchoredPosition = new Vector2(0, 100);
     }
 
     // Lower hand
     public void OnPointerExit(PointerEventData eventData)
     {
-        this.rectTrans.anchoredPosition = new Vector2(0, -60);
+        AnimateHandMovement(new Vector2(0, -60));
+        //this.rectTrans.anchoredPosition = new Vector2(0, -60);
+    }
+
+    public void AnimateHandMovement(Vector3 newPos)
+    {
+        StopAllCoroutines();
+        StartCoroutine(LerpPos(newPos));
+    }
+
+    IEnumerator LerpPos(Vector3 endPos)
+    {
+        float time = 0;
+        float duration = 0.15f;
+        Vector3 startPos = this.rectTrans.anchoredPosition;
+
+        while (time < duration)
+        {
+            this.rectTrans.anchoredPosition = Vector3.Lerp(startPos, endPos, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        this.rectTrans.anchoredPosition = endPos;
     }
 }

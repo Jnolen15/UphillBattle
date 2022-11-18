@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HandSlot : MonoBehaviour
 {
+    public Vector3 defaultPos;
     public GameObject slotedCard;
 
     private PlayerHand hand;
@@ -30,13 +31,14 @@ public class HandSlot : MonoBehaviour
     {
         if (toggle)
         {
-            this.transform.localScale = this.transform.localScale * 1.5f;
-            this.transform.localPosition = new Vector2(transform.localPosition.x, 160);
+            AnimateMovement(new Vector2(defaultPos.x, 160), new Vector2(1.5f, 1.5f));
+            //this.transform.localScale = this.transform.localScale * 1.5f;
+            //this.transform.localPosition = new Vector2(transform.localPosition.x, 160);
             hand.HighlightCard(this.gameObject);
         }
         else
         {
-            this.transform.localScale = this.transform.localScale / 1.5f;
+            //this.transform.localScale = this.transform.localScale / 1.5f;
             hand.DefaultSlotPositions();
         }
 
@@ -44,9 +46,34 @@ public class HandSlot : MonoBehaviour
 
     public void Discard()
     {
-        //HighlightSlot(false);
         slotedCard.transform.SetParent(this.transform.parent.parent);
         hand.Discard(this.gameObject, slotedCard);
         slotedCard = null;
+    }
+
+    public void AnimateMovement(Vector3 newPos, Vector3 newSize)
+    {
+        StopAllCoroutines();
+
+        // Start new movement
+        StartCoroutine(LerpPos(newPos, newSize));
+    }
+
+    IEnumerator LerpPos(Vector3 endPos, Vector3 endScale)
+    {
+        float time = 0;
+        float duration = 0.15f;
+        Vector3 startPos = transform.localPosition;
+        Vector3 startScale = transform.localScale;
+
+        while (time < duration)
+        {
+            transform.localPosition = Vector3.Lerp(startPos, endPos, time / duration);
+            transform.localScale = Vector3.Lerp(startScale, endScale, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localPosition = endPos;
     }
 }
