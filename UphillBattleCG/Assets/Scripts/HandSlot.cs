@@ -32,13 +32,10 @@ public class HandSlot : MonoBehaviour
         if (toggle)
         {
             AnimateMovement(new Vector2(defaultPos.x, 160), new Vector2(1.5f, 1.5f));
-            //this.transform.localScale = this.transform.localScale * 1.5f;
-            //this.transform.localPosition = new Vector2(transform.localPosition.x, 160);
             hand.HighlightCard(this.gameObject);
         }
         else
         {
-            //this.transform.localScale = this.transform.localScale / 1.5f;
             hand.DefaultSlotPositions();
         }
 

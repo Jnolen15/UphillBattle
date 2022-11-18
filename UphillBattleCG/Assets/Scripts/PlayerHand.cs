@@ -67,7 +67,6 @@ public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             var pos = new Vector3(xPos, 0, 0);
             slot.GetComponent<HandSlot>().defaultPos = pos;
             slot.GetComponent<HandSlot>().AnimateMovement(pos, new Vector2(1, 1));
-            //slot.transform.localPosition = pos;
             count++;
         }
     }
@@ -83,14 +82,12 @@ public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             var defaultSlotPos = CurCardSlots[left].GetComponent<HandSlot>().defaultPos;
             CurCardSlots[left].GetComponent<HandSlot>().AnimateMovement(new Vector3(defaultSlotPos.x - 100, 0), new Vector2(1, 1));
-            //CurCardSlots[left].transform.localPosition = new Vector3(slotPos.x - 100, slotPos.y);
         }
             
         if (right < CurCardSlots.Count)
         {
             var defaultSlotPos = CurCardSlots[right].GetComponent<HandSlot>().defaultPos;
             CurCardSlots[right].GetComponent<HandSlot>().AnimateMovement(new Vector3(defaultSlotPos.x + 100, 0), new Vector2(1, 1));
-            //CurCardSlots[right].transform.localPosition = new Vector3(slotPos.x + 100, slotPos.y);
         }
     }
 
@@ -98,14 +95,12 @@ public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         AnimateHandMovement(new Vector2(0, 100));
-        //this.rectTrans.anchoredPosition = new Vector2(0, 100);
     }
 
     // Lower hand
     public void OnPointerExit(PointerEventData eventData)
     {
         AnimateHandMovement(new Vector2(0, -60));
-        //this.rectTrans.anchoredPosition = new Vector2(0, -60);
     }
 
     public void AnimateHandMovement(Vector3 newPos)
@@ -117,12 +112,14 @@ public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     IEnumerator LerpPos(Vector3 endPos)
     {
         float time = 0;
-        float duration = 0.15f;
+        float duration = 0.25f;
         Vector3 startPos = this.rectTrans.anchoredPosition;
 
         while (time < duration)
         {
-            this.rectTrans.anchoredPosition = Vector3.Lerp(startPos, endPos, time / duration);
+            float t = time / duration;
+            t = t * t * (3f - 2f * t);
+            this.rectTrans.anchoredPosition = Vector3.Lerp(startPos, endPos, t);
             time += Time.deltaTime;
             yield return null;
         }
