@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TokenSlot (EFR)
       objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
 --- !u!224 &189181072 stripped
@@ -651,6 +655,14 @@ PrefabInstance:
     - target: {fileID: 4213856103778461075, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
       propertyPath: m_Name
       value: TokenSlot (EBL)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: position
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
@@ -1119,6 +1131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TokenSlot (BM)
       objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: position
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
 --- !u!224 &706837964 stripped
@@ -1220,6 +1236,10 @@ PrefabInstance:
     - target: {fileID: 4213856103778461075, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
       propertyPath: m_Name
       value: TokenSlot (BR)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: position
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
@@ -1553,6 +1573,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TokenSlot (EBM)
       objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: position
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
 --- !u!224 &885911282 stripped
@@ -1743,6 +1771,14 @@ PrefabInstance:
     - target: {fileID: 4213856103778461075, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
       propertyPath: m_Name
       value: TokenSlot (EBR)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: position
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
@@ -2661,6 +2697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TokenSlot (EFM)
       objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
 --- !u!224 &1833004615 stripped
@@ -2762,6 +2802,10 @@ PrefabInstance:
     - target: {fileID: 4213856103778461075, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
       propertyPath: m_Name
       value: TokenSlot (BL)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: position
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
@@ -3224,6 +3268,10 @@ PrefabInstance:
     - target: {fileID: 4213856103778461075, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
       propertyPath: m_Name
       value: TokenSlot (EFL)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711406938580108967, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}

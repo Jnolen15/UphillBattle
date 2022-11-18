@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
         curCard = card;
     }
     // MAY NOT NEED
-    public void CardPlayed(GameObject card)
+    public void CardPlayed()
     {
         holdingCard = false;
         curCard = null;
@@ -29,13 +29,25 @@ public class PlayerManager : MonoBehaviour
 
     public bool TryPlayUnitCard(UnitSO unitData)
     {
-        if (tokenSpace!= null)
+        if (tokenSpace == null) return false;
+        var uc = tokenSpace.GetComponent<UnitControl>();
+        if (uc.type != UnitControl.Type.friendly) return false;
+
+        // Frontline
+        if(uc.position == UnitControl.Position.frontline)
         {
-            var token = Instantiate<GameObject>(tokenPrefab, tokenSpace.transform);
-            token.GetComponent<TokenUnit>().SetUp(unitData);
-            tokenSpace.GetComponent<TokenSlot>().SlotToken(token);
-            return true;
+            if(unitData.position == UnitSO.Position.Backline) return false;
         }
-        return false;
+        // Backline
+        else if (uc.position == UnitControl.Position.backline)
+        {
+            if (unitData.position == UnitSO.Position.Frontline) return false;
+        }
+
+        var token = Instantiate<GameObject>(tokenPrefab, tokenSpace.transform);
+        token.GetComponent<TokenUnit>().SetUp(unitData);
+        tokenSpace.GetComponent<TokenSlot>().SlotToken(token);
+
+        return true;
     }
 }

@@ -49,11 +49,12 @@ public class CardUnit : Card
         if (playerManager.TryPlayUnitCard(unit))
         {
             Debug.Log("Played card: " + unit.title);
+            playerManager.CardPlayed();
             this.transform.parent.GetComponent<HandSlot>().Discard();
-            playerManager.CardPlayed(this.gameObject);
         } else
         {
             Debug.Log("Card could not be played");
+            playerManager.CardPlayed();
         }
     }
 }

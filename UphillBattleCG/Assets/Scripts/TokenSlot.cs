@@ -8,6 +8,7 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public GameObject slotedToken;
 
     private PlayerManager playerManager;
+
     private void Start()
     {
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();

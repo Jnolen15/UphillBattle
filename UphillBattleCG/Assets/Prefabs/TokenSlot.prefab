@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4213856103778461070}
   - component: {fileID: 4213856103778461073}
   - component: {fileID: 2234477335846432836}
+  - component: {fileID: 6711406938580108967}
   m_Layer: 5
   m_Name: TokenSlot
   m_TagString: Untagged
@@ -90,3 +91,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotedToken: {fileID: 0}
+--- !u!114 &6711406938580108967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213856103778461075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d5c33e7d23be94badc83ea664959a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
