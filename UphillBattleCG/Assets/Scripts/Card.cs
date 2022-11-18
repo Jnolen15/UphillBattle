@@ -33,7 +33,7 @@ public abstract class Card : MonoBehaviour,
     // ========== DRAG DROP ==========
     public void OnBeginDrag(PointerEventData eventData)
     {
-        indicator = Instantiate(Resources.Load<GameObject>("PlayIndicator"), transform.parent.parent);
+        indicator = Instantiate(Resources.Load<GameObject>("PlayIndicator"), transform.parent.parent.parent);
         playerManager.HoldingCard(this.gameObject);
     }
 

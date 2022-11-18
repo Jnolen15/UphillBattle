@@ -29,21 +29,15 @@ public class PlayerManager : MonoBehaviour
 
     public bool TryPlayUnitCard(UnitSO unitData)
     {
+        // Hovering over a token slot
         if (tokenSpace == null) return false;
-        var uc = tokenSpace.GetComponent<UnitControl>();
-        if (uc.type != UnitControl.Type.friendly) return false;
 
-        // Frontline
-        if(uc.position == UnitControl.Position.frontline)
-        {
-            if(unitData.position == UnitSO.Position.Backline) return false;
-        }
-        // Backline
-        else if (uc.position == UnitControl.Position.backline)
-        {
-            if (unitData.position == UnitSO.Position.Frontline) return false;
-        }
+        // Correct position
+        var ts = tokenSpace.GetComponent<TokenSlot>();
+        var canPlay = ts.CanTargetToken("Friendly", unitData.position.ToString());
+        if (!canPlay) return false;
 
+        // Play token
         var token = Instantiate<GameObject>(tokenPrefab, tokenSpace.transform);
         token.GetComponent<TokenUnit>().SetUp(unitData);
         tokenSpace.GetComponent<TokenSlot>().SlotToken(token);

@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class UnitControl : MonoBehaviour
 {
-    public enum Type
-    {
-        friendly,
-        enemy
-    }
-    public Type type;
+    private TokenSlot ts;
+    private TokenUnit tUnit;
 
-    public enum Position
+    private void Start()
     {
-        frontline,
-        backline
+        ts = this.GetComponent<TokenSlot>();
     }
-    public Position position;
+
+    public void SetUpUnit(TokenUnit tu)
+    {
+        tUnit = tu;
+    }
+
+    
+    public void AttackToken()
+    {
+        tUnit.Attack();
+    }
+
+    public void DamageToken(int dmg)
+    {
+        tUnit.TakeDamage(dmg);
+    }
 }

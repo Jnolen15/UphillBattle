@@ -5,15 +5,33 @@ using UnityEngine.EventSystems;
 
 public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public GameObject slotedToken;
+    // Token Data
+    public enum Type
+    {
+        Friendly,
+        Enemy
+    }
+    public Type type;
 
+    public enum Position
+    {
+        Frontline,
+        Backline
+    }
+    public Position position;
+
+    public GameObject slotedToken;
+    private TokenUnit tu;
+    private UnitControl uc;
     private PlayerManager playerManager;
 
     private void Start()
     {
+        uc = this.GetComponent<UnitControl>();
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
     }
 
+    // ========= MOUSE INTERACTION =========
     public void OnPointerEnter(PointerEventData eventData)
     {
         playerManager.SetTokenSpace(this.gameObject);
@@ -24,11 +42,50 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         playerManager.SetTokenSpace(null);
     }
 
+    // ========= TOKEN FUNCTION =========
+    public bool CanTargetToken(string ctype, string cpos)
+    {
+        // Token slot is empty
+        if (HasToken()) return false;
+
+        // Friendly
+        if (type == Type.Friendly)
+        {
+            if (ctype == "Enemy") return false;
+        }
+        // Enemy
+        else if (type == Type.Enemy)
+        {
+            if (ctype == "Friendly") return false;
+        }
+
+        // Frontline
+        if (position == Position.Frontline)
+        {
+            if (cpos == "Backline") return false;
+        }
+        // Backline
+        else if (position == Position.Backline)
+        {
+            if (cpos == "Frontline") return false;
+        }
+
+        return true;
+    }
+
     public void SlotToken(GameObject token)
     {
         slotedToken = token;
         slotedToken.transform.position = this.transform.position;
         AnimatePlacement();
+        tu = token.GetComponent<TokenUnit>();
+        uc.SetUpUnit(tu);
+    }
+
+    public bool HasToken()
+    {
+        if (slotedToken != null) return true;
+        return false;
     }
 
     // MAY JUST WANT TO REPLACE THIS WITH AN ANIMATION

@@ -394,10 +394,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
-  health: {fileID: 5122999074917820607}
-  armor: {fileID: 5122999075171320050}
-  damage: {fileID: 5122999075656093561}
+  healthText: {fileID: 5122999074917820607}
+  armorText: {fileID: 5122999075171320050}
+  armor: {fileID: 5122999075819446197}
+  damageText: {fileID: 5122999075656093561}
   art: {fileID: 5122999075223547328}
+  tHealth: 0
+  tDamage: 0
+  tArmor: 0
 --- !u!1 &5122999075171320048
 GameObject:
   m_ObjectHideFlags: 0

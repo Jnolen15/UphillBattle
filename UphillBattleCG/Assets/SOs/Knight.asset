@@ -15,7 +15,7 @@ MonoBehaviour:
   cost: 3
   health: 2
   damage: 3
-  armor: 0
+  armor: 4
   title: Knight
   description: When played, gain armor equal to current courage.
   position: 0
