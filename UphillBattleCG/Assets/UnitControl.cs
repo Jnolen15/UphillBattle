@@ -17,14 +17,19 @@ public class UnitControl : MonoBehaviour
         tUnit = tu;
     }
 
-    
+    public void RemoveUnit()
+    {
+        tUnit = null;
+    }
+
+
     public void AttackToken()
     {
-        tUnit.Attack();
+        tUnit.OnAttack();
     }
 
     public void DamageToken(int dmg)
     {
-        tUnit.TakeDamage(dmg);
+        tUnit.OnDamage();
     }
 }

@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
 
     // FOR TESTING
     public TextMeshProUGUI phase;
+    public GameObject tokenPrefab;
+    public UnitSO goblinData;
+    public GameObject Slot1;
+    public GameObject Slot2;
+    public GameObject Slot3;
 
     void Awake()
     {
@@ -38,6 +43,20 @@ public class GameManager : MonoBehaviour
             ActivatePhase();
         }
         phase.text = state.ToString();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            var token = Instantiate<GameObject>(tokenPrefab, Slot1.transform);
+            token.GetComponent<TokenUnit>().SetUp(goblinData);
+            Slot1.GetComponent<TokenSlot>().SlotToken(token);
+
+            var token2 = Instantiate<GameObject>(tokenPrefab, Slot2.transform);
+            token2.GetComponent<TokenUnit>().SetUp(goblinData);
+            Slot2.GetComponent<TokenSlot>().SlotToken(token2);
+
+            var token3 = Instantiate<GameObject>(tokenPrefab, Slot3.transform);
+            token3.GetComponent<TokenUnit>().SetUp(goblinData);
+            Slot3.GetComponent<TokenSlot>().SlotToken(token3);
+        }
     }
 
     private void AdvacePhase()

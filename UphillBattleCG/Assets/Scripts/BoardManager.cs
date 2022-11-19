@@ -36,4 +36,48 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
+
+    public GameObject GetOpposingFrontline(TokenSlot ts)
+    {
+        var thisPos = TokenSlots.IndexOf(ts.gameObject);
+        var dist = 0;
+        GameObject slot = TokenSlots[thisPos];
+
+        if (ts.position == TokenSlot.Position.Frontline)
+            dist = 3;
+        else if (ts.position == TokenSlot.Position.Backline)
+            dist = 6;
+
+        if (ts.type == TokenSlot.Type.Friendly)
+            slot = TokenSlots[thisPos - dist];
+        else if (ts.type == TokenSlot.Type.Enemy)
+            slot = TokenSlots[thisPos + dist];
+
+        if (slot.GetComponent<TokenSlot>().HasToken())
+            return slot.GetComponent<TokenSlot>().slotedToken;
+
+        return null;
+    }
+
+    public GameObject GetOpposingBackline(TokenSlot ts)
+    {
+        var thisPos = TokenSlots.IndexOf(ts.gameObject);
+        var dist = 0;
+        GameObject slot = TokenSlots[thisPos];
+
+        if (ts.position == TokenSlot.Position.Frontline)
+            dist = 6;
+        else if (ts.position == TokenSlot.Position.Backline)
+            dist = 9;
+
+        if (ts.type == TokenSlot.Type.Friendly)
+            slot = TokenSlots[thisPos - dist];
+        else if (ts.type == TokenSlot.Type.Enemy)
+            slot = TokenSlots[thisPos + dist];
+
+        if (slot.GetComponent<TokenSlot>().HasToken())
+            return slot.GetComponent<TokenSlot>().slotedToken;
+
+        return null;
+    }
 }

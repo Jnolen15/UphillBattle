@@ -25,7 +25,7 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private UnitControl uc;
     private PlayerManager playerManager;
 
-    private void Start()
+    private void Awake()
     {
         uc = this.GetComponent<UnitControl>();
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
@@ -82,6 +82,12 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         uc.SetUpUnit(tu);
     }
 
+    public void UnslotToken(GameObject token)
+    {
+        uc.RemoveUnit();
+        slotedToken = null;
+    }
+
     public bool HasToken()
     {
         if (slotedToken != null) return true;
@@ -91,7 +97,7 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     // MAY JUST WANT TO REPLACE THIS WITH AN ANIMATION
     public void AnimatePlacement()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         StartCoroutine(LerpPos());
     }
 
@@ -99,10 +105,10 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         float time = 0;
         float duration = 0.15f;
-        Vector3 startPos = new Vector3(transform.localPosition.x, transform.localPosition.y+100, transform.localPosition.z -50);
-        Vector3 startScale = new Vector3(transform.localScale.x + 0.1f, transform.localScale.y + 0.1f, transform.localScale.z);
         Vector3 endPos = transform.localPosition;
         Vector3 endScale = transform.localScale;
+        Vector3 startPos = new Vector3(transform.localPosition.x, transform.localPosition.y+100, transform.localPosition.z -50);
+        Vector3 startScale = new Vector3(transform.localScale.x + 0.1f, transform.localScale.y + 0.1f, transform.localScale.z);
 
         while (time < duration)
         {

@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db093b4f8ed83f346adc7980022e256b, type: 3}
-  m_Name: Knight
+  m_Name: Goblin
   m_EditorClassIdentifier: 
-  cost: 3
-  health: 2
-  damage: 3
-  armor: 4
-  title: Knight
-  description: When played, gain armor equal to current courage.
-  position: 0
-  art: {fileID: 21300000, guid: e58e3e846346ab844a76368ad270b4c0, type: 3}
-  cardArtOffset: {x: 0, y: -45}
-  cardArtSize: 0.09
+  art: {fileID: 21300000, guid: 397187d19629f1e4ca84c100f5d06cdd, type: 3}
+  cardArtOffset: {x: 0, y: 0}
+  cardArtSize: 0
   tokenArtOffset: {x: 0, y: -150}
-  tokenArtSize: 0.14
+  tokenArtSize: 0.22
+  cost: 0
+  health: 4
+  damage: 1
+  armor: 0
+  title: Goblin Scout
+  description: 
+  position: 0
+  AttackList:
+  - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
+  DamageList: []

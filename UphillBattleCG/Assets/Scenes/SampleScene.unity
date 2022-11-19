@@ -369,6 +369,11 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   state: 0
   phase: {fileID: 877342777}
+  tokenPrefab: {fileID: 5122999074987323664, guid: 2ab20f5fd08808741966cd1c262c02db, type: 3}
+  goblinData: {fileID: 11400000, guid: dc46041f807f3824a8806b06ddad1027, type: 2}
+  Slot1: {fileID: 676612369}
+  Slot2: {fileID: 242372509}
+  Slot3: {fileID: 1586608244}
 --- !u!1 &200491683 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4213856103778461075, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}

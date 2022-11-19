@@ -7,6 +7,8 @@ using TMPro;
 public class TokenUnit : MonoBehaviour
 {
     public UnitSO unit;
+    public TokenSlot tokenSlot;
+    public BoardManager boardManager;
 
     // ========= Visual Componenets =========
     [SerializeField] private TextMeshProUGUI healthText;
@@ -16,6 +18,7 @@ public class TokenUnit : MonoBehaviour
     [SerializeField] private Image art;
 
     // ========= Token Functionality =========
+    public bool isEnemy;
     public int tHealth;
     public int tDamage;
     public int tArmor;
@@ -23,6 +26,8 @@ public class TokenUnit : MonoBehaviour
     public void SetUp(UnitSO givenUnit)
     {
         unit = givenUnit;
+        tokenSlot = this.GetComponentInParent<TokenSlot>();
+        boardManager = this.GetComponentInParent<BoardManager>();
 
         // Visuals
         healthText.text = unit.health.ToString();
@@ -38,6 +43,13 @@ public class TokenUnit : MonoBehaviour
         tHealth = unit.health;
         tDamage = unit.damage;
         tArmor = unit.armor;
+
+        // Lists
+        foreach(UnitFunction func in unit.AttackList)
+            AttackList.Add(func);
+
+        foreach (UnitFunction func in unit.DamageList)
+            DamageList.Add(func);
     }
 
     private void Update()
@@ -58,14 +70,47 @@ public class TokenUnit : MonoBehaviour
     }
 
     // ========= Combat Functionality =========
-    public void Attack()
+    [SerializeField] private List<UnitFunction> AttackList = new List<UnitFunction>();
+    [SerializeField] private List<UnitFunction> DamageList = new List<UnitFunction>();
+
+    public void OnAttack()
     {
-        Debug.Log(unit.title + " is attacking!");
+        if (AttackList.Count > 0)
+        {
+            foreach (UnitFunction function in AttackList)
+            {
+                function.Activate(this);
+            }
+        }
+        else
+        {
+            Debug.Log(unit.title + " has no Attack Functions");
+        }
+    }
+
+    public void OnDamage()
+    {
+        if (DamageList.Count > 0)
+        {
+            foreach (UnitFunction function in DamageList)
+            {
+                function.Activate(this);
+            }
+        }
+        else
+        {
+            Debug.Log(unit.title + " has no Damage Functions");
+        }
     }
 
     public void TakeDamage(int dmg)
     {
-        if(tArmor > 0)
+        // If say you wanted an effect where incoming damage was scaled
+        // Make a public incomingDamage variable
+        // Then modify that damage in the SO function
+        OnDamage();
+
+        if (tArmor > 0)
         {
             tArmor -= dmg;
         }
@@ -75,10 +120,12 @@ public class TokenUnit : MonoBehaviour
         }
 
         if (tHealth <= 0) Die();
-    }
+    }  
 
     public void Die()
     {
         Debug.Log("Implement Death");
+        tokenSlot.UnslotToken(gameObject);
+        Destroy(gameObject);
     }
 }
