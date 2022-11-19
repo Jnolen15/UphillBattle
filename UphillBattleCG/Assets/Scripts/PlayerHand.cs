@@ -40,11 +40,14 @@ public class PlayerHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
 
     // Removes a card from the player's hand
-    public void Discard(GameObject cardSlot, GameObject card)
+    public void Discard(GameObject cardSlot, GameObject card, bool PlayedToBoard)
     {
         // Discard card
         Hand.Remove(card);
-        cardManager.Discard(card);
+        if(PlayedToBoard)
+            cardManager.PlayedToBoard(card);
+        else
+            cardManager.Discard(card);
 
         // De-activate slot
         cardSlot.transform.localPosition = Vector3.zero;

@@ -6,10 +6,12 @@ public class UnitControl : MonoBehaviour
 {
     private TokenSlot ts;
     private TokenUnit tUnit;
+    private CardManager cManager;
 
     private void Start()
     {
         ts = this.GetComponent<TokenSlot>();
+        cManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<CardManager>();
     }
 
     public void SetUpUnit(TokenUnit tu)
@@ -19,6 +21,9 @@ public class UnitControl : MonoBehaviour
 
     public void RemoveUnit()
     {
+        if(ts.type == TokenSlot.Type.Friendly)
+            cManager.ReclaimFromBoard(tUnit.GetComponent<TokenUnit>().unit);
+
         tUnit = null;
     }
 

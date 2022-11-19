@@ -7,6 +7,7 @@ public class CardManager : MonoBehaviour
     // ======== CARD PILES ========
     public List<GameObject> Deck = new List<GameObject>();
     public List<GameObject> Discards = new List<GameObject>();
+    public List<GameObject> OnBoard = new List<GameObject>(); 
 
     // ======== REFRENCES ========
     public PlayerHand hand;
@@ -53,6 +54,25 @@ public class CardManager : MonoBehaviour
     {
         Discards.Add(card);
         card.SetActive(false);
+    }
+
+    public void PlayedToBoard(GameObject card)
+    {
+        OnBoard.Add(card);
+        card.SetActive(false);
+    }
+
+    public void ReclaimFromBoard(UnitSO data)
+    {
+        foreach(GameObject card in OnBoard)
+        {
+            if(data.title == card.GetComponent<CardUnit>().unit.title)
+            {
+                OnBoard.Remove(card);
+                Discards.Add(card);
+                break;
+            }
+        }
     }
 
     // Adds discard pile into deck pile

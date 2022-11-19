@@ -50,7 +50,7 @@ public class CardUnit : Card
         {
             Debug.Log("Played card: " + unit.title);
             playerManager.CardPlayed();
-            this.transform.parent.GetComponent<HandSlot>().Discard();
+            this.transform.parent.GetComponent<HandSlot>().Discard(true);
         } else
         {
             Debug.Log("Card could not be played");

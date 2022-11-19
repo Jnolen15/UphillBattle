@@ -67,6 +67,11 @@ public class TokenUnit : MonoBehaviour
             armor.SetActive(true);
         else
             armor.SetActive(false);
+
+        if (tHealth < unit.health)
+            healthText.color = Color.red;
+        else
+            healthText.color = Color.black;
     }
 
     // ========= Combat Functionality =========

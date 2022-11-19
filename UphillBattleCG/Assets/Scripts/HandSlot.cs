@@ -41,13 +41,14 @@ public class HandSlot : MonoBehaviour
 
     }
 
-    public void Discard()
+    public void Discard(bool PlayedToBoard)
     {
         slotedCard.transform.SetParent(this.transform.parent.parent);
-        hand.Discard(this.gameObject, slotedCard);
+        hand.Discard(this.gameObject, slotedCard, PlayedToBoard);
         slotedCard = null;
     }
 
+    // ======== Slot Animation ========
     public void AnimateMovement(Vector3 newPos, Vector3 newSize)
     {
         StopAllCoroutines();
