@@ -19,9 +19,37 @@ public class TokenUnit : MonoBehaviour
 
     // ========= Token Functionality =========
     public bool isEnemy;
-    public int tHealth;
-    public int tDamage;
-    public int tArmor;
+    [SerializeField] private int tHealth;
+    public int THealth
+    {
+        get { return tHealth; }
+        set
+        {
+            tHealth = value;
+            UpdateStats();
+        }
+    }
+    [SerializeField] private int tDamage;
+    public int TDamage
+    {
+        get { return tDamage; }
+        set
+        {
+            tDamage = value;
+            UpdateStats();
+        }
+    }
+    [SerializeField] private int tArmor;
+    public int TArmor
+    {
+        get { return tArmor; }
+        set
+        {
+            tArmor = value;
+            if (tArmor < 0) tArmor = 0;
+            UpdateStats();
+        }
+    }
 
     public void SetUp(UnitSO givenUnit)
     {
@@ -40,9 +68,9 @@ public class TokenUnit : MonoBehaviour
         art.rectTransform.localScale = size;
 
         // Stats
-        tHealth = unit.health;
-        tDamage = unit.attack;
-        tArmor = unit.armor;
+        THealth = unit.health;
+        TDamage = unit.attack;
+        TArmor = unit.armor;
 
         // Lists
         foreach(UnitFunction func in unit.AttackList)
@@ -50,33 +78,73 @@ public class TokenUnit : MonoBehaviour
 
         foreach (UnitFunction func in unit.DamageList)
             DamageList.Add(func);
-    }
 
-    private void Update()
-    {
-        UpdateStats();
+        foreach (UnitFunction func in unit.PlayList)
+            PlayList.Add(func);
+
+        // On Play
+        OnPlay();
     }
 
     private void UpdateStats()
     {
-        healthText.text = tHealth.ToString();
-        armorText.text = tArmor.ToString();
-        damageText.text = tDamage.ToString();
+        healthText.text = THealth.ToString();
+        armorText.text = TArmor.ToString();
+        damageText.text = TDamage.ToString();
 
-        if(tArmor > 0)
+        if(TArmor > 0)
             armor.SetActive(true);
         else
             armor.SetActive(false);
 
-        if (tHealth < unit.health)
+        if (THealth < unit.health)
             healthText.color = Color.red;
         else
             healthText.color = Color.black;
     }
 
     // ========= Combat Functionality =========
+    public void TakeDamage(int dmg)
+    {
+        // If say you wanted an effect where incoming damage was scaled
+        // Make a public incomingDamage variable
+        // Then modify that damage in the SO function
+        OnDamage();
+
+        if (TArmor > 0)
+        {
+            TArmor -= dmg;
+        }
+        else
+        {
+            THealth -= dmg;
+        }
+
+        if (THealth <= 0) Die();
+    }
+
+    public void Die()
+    {
+        Debug.Log("Implement Death");
+        tokenSlot.UnslotToken(gameObject);
+        Destroy(gameObject);
+    }
+
+    // ========= Evenet Triggers =========
     [SerializeField] private List<UnitFunction> AttackList = new List<UnitFunction>();
     [SerializeField] private List<UnitFunction> DamageList = new List<UnitFunction>();
+    [SerializeField] private List<UnitFunction> PlayList = new List<UnitFunction>();
+
+    public void OnPlay()
+    {
+        if (AttackList.Count > 0)
+        {
+            foreach (UnitFunction function in PlayList)
+            {
+                function.Activate(this);
+            }
+        }
+    }
 
     public void OnAttack()
     {
@@ -108,29 +176,5 @@ public class TokenUnit : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int dmg)
-    {
-        // If say you wanted an effect where incoming damage was scaled
-        // Make a public incomingDamage variable
-        // Then modify that damage in the SO function
-        OnDamage();
-
-        if (tArmor > 0)
-        {
-            tArmor -= dmg;
-        }
-        else
-        {
-            tHealth -= dmg;
-        }
-
-        if (tHealth <= 0) Die();
-    }  
-
-    public void Die()
-    {
-        Debug.Log("Implement Death");
-        tokenSlot.UnslotToken(gameObject);
-        Destroy(gameObject);
-    }
+    
 }

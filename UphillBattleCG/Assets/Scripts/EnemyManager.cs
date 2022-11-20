@@ -8,6 +8,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject tokenPrefab;
     [SerializeField] private List<UnitSO> AvailableEnemies = new List<UnitSO>();
 
+    // Need smarter place
+    // More balanced picks
+    // Place enemies into their correct lanes
+
     public void PlaceEnemies(int num)
     {
         StartCoroutine(PlaceEnemiesWPauses(num));

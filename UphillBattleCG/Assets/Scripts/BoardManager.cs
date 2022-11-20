@@ -39,7 +39,7 @@ public class BoardManager : MonoBehaviour
     {
         Debug.Log("Starting Player Combat");
 
-        var start = (TokenSlots.Count / 2) - 1;
+        var start = (TokenSlots.Count / 2);
         for (int i = start; i < TokenSlots.Count; i++)
         {
             if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())

@@ -29,4 +29,5 @@ public class UnitSO : ScriptableObject
 
     public List<UnitFunction> AttackList = new List<UnitFunction>();
     public List<UnitFunction> DamageList = new List<UnitFunction>();
+    public List<UnitFunction> PlayList = new List<UnitFunction>();
 }
