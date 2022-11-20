@@ -24,11 +24,13 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private TokenUnit tu;
     private UnitControl uc;
     private PlayerManager playerManager;
+    private BoardManager BoardManager;
 
     private void Awake()
     {
         uc = this.GetComponent<UnitControl>();
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
+        BoardManager = GetComponentInParent<BoardManager>();
     }
 
     // ========= MOUSE INTERACTION =========
@@ -80,12 +82,14 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         AnimatePlacement();
         tu = token.GetComponent<TokenUnit>();
         uc.SetUpUnit(tu);
+        BoardManager.TokenSloted(gameObject);
     }
 
     public void UnslotToken(GameObject token)
     {
         uc.RemoveUnit();
         slotedToken = null;
+        BoardManager.TokenOpen(gameObject);
     }
 
     public bool HasToken()

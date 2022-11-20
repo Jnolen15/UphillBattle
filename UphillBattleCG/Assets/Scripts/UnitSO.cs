@@ -13,7 +13,7 @@ public class UnitSO : ScriptableObject
 
     public int cost;
     public int health;
-    public int damage;
+    public int attack;
     public int armor;
 
     public string title;

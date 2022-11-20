@@ -8,7 +8,7 @@ public class BasicAttack : UnitFunction
     public override void Activate(TokenUnit tUnit)
     {
         var data = tUnit.unit;
-        Debug.Log(data.title + " is attacking for " + data.damage);
+        Debug.Log(data.title + " is attacking for " + data.attack);
 
         var target = tUnit.boardManager.GetOpposingFrontline(tUnit.tokenSlot);
         if(target == null)
@@ -16,8 +16,8 @@ public class BasicAttack : UnitFunction
 
         if(target != null)
         {
-            target.GetComponent<TokenUnit>().TakeDamage(data.damage);
-            Debug.Log("Hit " + target + " for " + data.damage);
+            target.GetComponent<TokenUnit>().TakeDamage(data.attack);
+            Debug.Log("Hit " + target.GetComponent<TokenUnit>().unit.name + " for " + data.attack);
         }
         else
         {

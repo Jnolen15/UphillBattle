@@ -8,15 +8,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private CardManager cardManager;
     [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private EnemyManager enemyManager;
+    private bool firstTurn;
+
+    [SerializeField] private GameObject EndTurnButton;
 
     public enum State
     {
         //Growdeck,
-        //Setup,
+        Setup,
         Play,
         PCombat,
-        ECombat
-        //Reinforce
+        ECombat,
+        Reinforce
     }
     public State state;
 
@@ -32,6 +36,14 @@ public class GameManager : MonoBehaviour
     {
         cardManager = this.GetComponent<CardManager>();
         playerManager = this.GetComponent<PlayerManager>();
+        enemyManager = this.GetComponent<EnemyManager>();
+
+        firstTurn = true;
+    }
+
+    private void Start()
+    {
+        ActivatePhase();
     }
 
     void Update()
@@ -59,14 +71,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void AdvacePhase()
+    public void AdvacePhase()
     {
         switch (state)
         {
             /*case State.Growdeck:
-                break;
-            case State.Setup:
                 break;*/
+            case State.Setup:
+                state = State.Play;
+                break;
             case State.Play:
                 state = State.PCombat;
                 break;
@@ -74,11 +87,14 @@ public class GameManager : MonoBehaviour
                 state = State.ECombat;
                 break;
             case State.ECombat:
-                state = State.Play;
+                state = State.Reinforce;
                 break;
-                //case State.Reinforce:
-                //    break;
+            case State.Reinforce:
+                state = State.Setup;
+                break;
         }
+
+        ActivatePhase();
     }
 
     private void ActivatePhase()
@@ -86,19 +102,45 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             /*case State.Growdeck:
-                break;
-            case State.Setup:
                 break;*/
+            case State.Setup:
+                if (firstTurn)
+                {
+                    playerManager.Gold += 5;
+                    playerManager.Courage += 5;
+                    cardManager.DrawCards(5);
+                    enemyManager.PlaceEnemies(3);
+                    firstTurn = false;
+                } else
+                {
+                    playerManager.Gold += 2;
+                    playerManager.Courage -= 1;
+                    cardManager.DrawCards(2);
+                }
+                StartCoroutine(PauseTillNextState(2f));
+                break;
             case State.Play:
+                EndTurnButton.SetActive(true);
                 break;
             case State.PCombat:
+                EndTurnButton.SetActive(false);
                 boardManager.PlayerCombat();
+                StartCoroutine(PauseTillNextState(2f));
                 break;
             case State.ECombat:
                 boardManager.EnemyCombat();
+                StartCoroutine(PauseTillNextState(2f));
                 break;
-                //case State.Reinforce:
-                //    break;
+            case State.Reinforce:
+                enemyManager.PlaceEnemies(1);
+                StartCoroutine(PauseTillNextState(2f));
+                break;
         }
+    }
+
+    IEnumerator PauseTillNextState(float pauseTime)
+    {
+        yield return new WaitForSeconds(pauseTime);
+        AdvacePhase();
     }
 }

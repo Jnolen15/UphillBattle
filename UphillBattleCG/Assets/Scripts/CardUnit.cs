@@ -21,7 +21,7 @@ public class CardUnit : Card
     {
         cost.text = unit.cost.ToString();
         health.text = unit.health.ToString();
-        damage.text = unit.damage.ToString();
+        damage.text = unit.attack.ToString();
         position.text = unit.position.ToString();
         title.text = unit.title;
         description.text = unit.description;

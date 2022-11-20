@@ -5,9 +5,35 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     public List<GameObject> TokenSlots = new List<GameObject>();
+    public List<GameObject> OpenSlots = new List<GameObject>();
+    public List<GameObject> OpenEnemySlots = new List<GameObject>();
 
     public int rows;
     public int columns;
+
+    public void TokenSloted(GameObject token)
+    {
+        if (OpenSlots.Contains(token))
+            OpenSlots.Remove(token);
+        else
+            Debug.LogError("Not in open slot list, can't remove");
+
+        if (token.GetComponent<TokenSlot>().type == TokenSlot.Type.Enemy)
+        {
+            if (OpenEnemySlots.Contains(token))
+                OpenEnemySlots.Remove(token);
+            else
+                Debug.LogError("Not in open Enemy slot list, can't remove");
+        }
+    }
+
+    public void TokenOpen(GameObject token)
+    {
+        OpenSlots.Add(token);
+
+        if (token.GetComponent<TokenSlot>().type == TokenSlot.Type.Enemy)
+            OpenEnemySlots.Add(token);
+    }
 
     public void PlayerCombat()
     {
@@ -79,5 +105,13 @@ public class BoardManager : MonoBehaviour
             return slot.GetComponent<TokenSlot>().slotedToken;
 
         return null;
+    }
+
+    public GameObject GetRandomOpenEnemySlot()
+    {
+        if (OpenEnemySlots.Count <= 0) return null;
+
+        var rand = Random.Range(0, OpenEnemySlots.Count);
+        return OpenEnemySlots[rand];
     }
 }

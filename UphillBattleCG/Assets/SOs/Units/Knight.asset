@@ -19,7 +19,7 @@ MonoBehaviour:
   tokenArtSize: 0.14
   cost: 3
   health: 2
-  damage: 3
+  attack: 3
   armor: 4
   title: Knight
   description: When played, gain armor equal to current courage.

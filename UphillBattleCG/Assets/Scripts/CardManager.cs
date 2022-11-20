@@ -16,31 +16,35 @@ public class CardManager : MonoBehaviour
     {
         // FOR TESTING RESAONS
         if (Input.GetKeyDown(KeyCode.D))
-            DrawCard();
+            DrawCards(1);
     }
 
-    public void DrawCard()
+    public void DrawCards(int num)
     {
-        if(Deck.Count > 0)
+        for(int i = num; i > 0; i--)
         {
-            if (hand.Hand.Count < 5)
+            if (Deck.Count > 0)
             {
-                var card = GetRandomCard();
-                Deck.Remove(card);
-                hand.AddCard(card);
-            } else
-            {
-                Debug.Log("Hand Full");
+                if (hand.Hand.Count < 5)
+                {
+                    var card = GetRandomCard();
+                    Deck.Remove(card);
+                    hand.AddCard(card);
+                }
+                else
+                {
+                    Debug.Log("Hand Full");
+                }
             }
-        }
-        else
-        {
-            Debug.Log("Deck is empty");
-            if (Discards.Count > 0)
+            else
             {
-                Debug.Log("Shuffling discards into deck");
-                ShuffleDiscards();
-                DrawCard();
+                Debug.Log("Deck is empty");
+                if (Discards.Count > 0)
+                {
+                    Debug.Log("Shuffling discards into deck");
+                    ShuffleDiscards();
+                    DrawCards(i);
+                }
             }
         }
     }

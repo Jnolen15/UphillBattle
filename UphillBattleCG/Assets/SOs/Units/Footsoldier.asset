@@ -19,7 +19,7 @@ MonoBehaviour:
   tokenArtSize: 0.18
   cost: 2
   health: 3
-  damage: 2
+  attack: 2
   armor: 0
   title: Footsoldier
   description: 

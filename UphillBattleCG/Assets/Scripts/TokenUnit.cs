@@ -32,7 +32,7 @@ public class TokenUnit : MonoBehaviour
         // Visuals
         healthText.text = unit.health.ToString();
         armorText.text = unit.armor.ToString();
-        damageText.text = unit.damage.ToString();
+        damageText.text = unit.attack.ToString();
 
         art.sprite = unit.art;
         art.rectTransform.localPosition = unit.tokenArtOffset;
@@ -41,7 +41,7 @@ public class TokenUnit : MonoBehaviour
 
         // Stats
         tHealth = unit.health;
-        tDamage = unit.damage;
+        tDamage = unit.attack;
         tArmor = unit.armor;
 
         // Lists
@@ -89,7 +89,7 @@ public class TokenUnit : MonoBehaviour
         }
         else
         {
-            Debug.Log(unit.title + " has no Attack Functions");
+            //Debug.Log(unit.title + " has no Attack Functions");
         }
     }
 
@@ -104,7 +104,7 @@ public class TokenUnit : MonoBehaviour
         }
         else
         {
-            Debug.Log(unit.title + " has no Damage Functions");
+            //Debug.Log(unit.title + " has no Damage Functions");
         }
     }
 
