@@ -35,6 +35,6 @@ public class UnitControl : MonoBehaviour
 
     public void DamageToken(int dmg)
     {
-        tUnit.OnDamage();
+        tUnit.TakeDamage(dmg);
     }
 }

@@ -45,10 +45,11 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     // ========= TOKEN FUNCTION =========
-    public bool CanTargetToken(string ctype, string cpos)
+    public bool CanTargetToken(bool needEmpty, string ctype, string cpos)
     {
-        // Token slot is empty
-        if (HasToken()) return false;
+        // Token slot is empty or not
+        if(needEmpty && HasToken()) return false;
+        if (!needEmpty && !HasToken()) return false;
 
         // Friendly
         if (type == Type.Friendly)

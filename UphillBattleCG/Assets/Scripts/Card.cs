@@ -19,6 +19,12 @@ public abstract class Card : MonoBehaviour,
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
     }
 
+    private void OnEnable()
+    {
+        // Prevents cards scale changing when played quickly
+        this.transform.localScale = new Vector3(0.5f, 0.5f);
+    }
+
     // ========== MOUSE CONTROLS ==========
     public void OnPointerEnter(PointerEventData eventData)
     {

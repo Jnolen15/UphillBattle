@@ -59,7 +59,7 @@ public class PlayerManager : MonoBehaviour
 
         // Correct position
         var ts = tokenSpace.GetComponent<TokenSlot>();
-        var canPlay = ts.CanTargetToken("Friendly", unitData.position.ToString());
+        var canPlay = ts.CanTargetToken(true, "Friendly", unitData.position.ToString());
         if (!canPlay) return false;
 
         // Can afford it
@@ -70,6 +70,52 @@ public class PlayerManager : MonoBehaviour
         var token = Instantiate<GameObject>(tokenPrefab, tokenSpace.transform);
         token.GetComponent<TokenUnit>().SetUp(unitData);
         tokenSpace.GetComponent<TokenSlot>().SlotToken(token);
+
+        return true;
+    }
+
+    public bool TryPlayActionCard(ActionSO actionData)
+    {
+        // Hovering over a token slot
+        if (tokenSpace == null) return false;
+
+        // Correct position
+        var ts = tokenSpace.GetComponent<TokenSlot>();
+        var canPlay = false;
+        switch (actionData.position)
+        {
+            default:
+                break;
+            case ActionSO.Position.Anywhere:
+                canPlay = ts.CanTargetToken(actionData.needTarget, "Anywhere", "Versatile");
+                break;
+            case ActionSO.Position.Friendly:
+                canPlay = ts.CanTargetToken(actionData.needTarget, "Friendly", "Versatile");
+                break;
+            case ActionSO.Position.FFrontline:
+                canPlay = ts.CanTargetToken(actionData.needTarget, "Friendly", "Frontline");
+                break;
+            case ActionSO.Position.FBackline:
+                canPlay = ts.CanTargetToken(actionData.needTarget, "Friendly", "Backline");
+                break;
+            case ActionSO.Position.Enemy:
+                canPlay = ts.CanTargetToken(actionData.needTarget, "Enemy", "Versatile");
+                break;
+            case ActionSO.Position.EFrontline:
+                canPlay = ts.CanTargetToken(actionData.needTarget, "Enemy", "Frontline");
+                break;
+            case ActionSO.Position.EBackline:
+                canPlay = ts.CanTargetToken(actionData.needTarget, "Enemy", "Backline");
+                break;
+        }
+        if (!canPlay) return false;
+
+        // Can afford it
+        if (Gold < actionData.cost) return false;
+        else Gold -= actionData.cost;
+
+        // Play action
+        actionData.OnPlay(tokenSpace);
 
         return true;
     }
