@@ -9,6 +9,7 @@ public class TokenUnit : MonoBehaviour
     public UnitSO unit;
     public TokenSlot tokenSlot;
     public BoardManager boardManager;
+    public PlayerManager playerManager;
 
     // ========= Visual Componenets =========
     [SerializeField] private TextMeshProUGUI healthText;
@@ -18,7 +19,6 @@ public class TokenUnit : MonoBehaviour
     [SerializeField] private Image art;
 
     // ========= Token Functionality =========
-    public bool isEnemy;
     [SerializeField] private int tHealth;
     public int THealth
     {
@@ -56,6 +56,7 @@ public class TokenUnit : MonoBehaviour
         unit = givenUnit;
         tokenSlot = this.GetComponentInParent<TokenSlot>();
         boardManager = this.GetComponentInParent<BoardManager>();
+        playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
 
         // Visuals
         healthText.text = unit.health.ToString();
@@ -81,6 +82,9 @@ public class TokenUnit : MonoBehaviour
 
         foreach (UnitFunction func in unit.PlayList)
             PlayList.Add(func);
+        
+        foreach (UnitFunction func in unit.DeathList)
+            DeathList.Add(func);
 
         // On Play
         OnPlay();
@@ -125,7 +129,8 @@ public class TokenUnit : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Implement Death");
+        Debug.Log(unit.title + " Dies");
+        OnDeath();
         tokenSlot.UnslotToken(gameObject);
         Destroy(gameObject);
     }
@@ -134,6 +139,7 @@ public class TokenUnit : MonoBehaviour
     [SerializeField] private List<UnitFunction> AttackList = new List<UnitFunction>();
     [SerializeField] private List<UnitFunction> DamageList = new List<UnitFunction>();
     [SerializeField] private List<UnitFunction> PlayList = new List<UnitFunction>();
+    [SerializeField] private List<UnitFunction> DeathList = new List<UnitFunction>();
 
     public void OnPlay()
     {
@@ -155,10 +161,6 @@ public class TokenUnit : MonoBehaviour
                 function.Activate(this);
             }
         }
-        else
-        {
-            //Debug.Log(unit.title + " has no Attack Functions");
-        }
     }
 
     public void OnDamage()
@@ -170,11 +172,16 @@ public class TokenUnit : MonoBehaviour
                 function.Activate(this);
             }
         }
-        else
-        {
-            //Debug.Log(unit.title + " has no Damage Functions");
-        }
     }
 
-    
+    public void OnDeath()
+    {
+        if (DeathList.Count > 0)
+        {
+            foreach (UnitFunction function in DeathList)
+            {
+                function.Activate(this);
+            }
+        }
+    }
 }

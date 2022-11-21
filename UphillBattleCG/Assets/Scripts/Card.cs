@@ -13,10 +13,12 @@ public abstract class Card : MonoBehaviour,
 
     private GameObject indicator;
     public PlayerManager playerManager;
+    public GameManager gameManager;
 
     private void Start()
     {
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void OnEnable()
@@ -39,19 +41,26 @@ public abstract class Card : MonoBehaviour,
     // ========== DRAG DROP ==========
     public void OnBeginDrag(PointerEventData eventData)
     {
-        indicator = Instantiate(Resources.Load<GameObject>("PlayIndicator"), transform.parent.parent.parent);
-        playerManager.HoldingCard(this.gameObject);
+        if (gameManager.state == GameManager.State.Play)
+        {
+            indicator = Instantiate(Resources.Load<GameObject>("PlayIndicator"), transform.parent.parent.parent);
+            playerManager.HoldingCard(this.gameObject);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        indicator.transform.position = eventData.position;
+        if (gameManager.state == GameManager.State.Play && indicator!=null)
+            indicator.transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        GameObject.Destroy(indicator);
-        Play();
+        if (gameManager.state == GameManager.State.Play && indicator != null)
+        {
+            GameObject.Destroy(indicator);
+            Play();
+        }
     }
 
     // ========== OVERRIDE CLASSES ==========

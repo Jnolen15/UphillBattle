@@ -19,11 +19,15 @@ MonoBehaviour:
   tokenArtSize: 0.12
   cost: 0
   health: 8
-  attack: 3
+  attack: 2
   armor: 0
   title: Goliath
   description: Beeg Man
   position: 0
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
+  - {fileID: 11400000, guid: ef63ba4faa96cfc46a41fc4c29797e31, type: 2}
   DamageList: []
+  PlayList: []
+  DeathList:
+  - {fileID: 11400000, guid: 12038e0e937125d429d8e62070b8e319, type: 2}

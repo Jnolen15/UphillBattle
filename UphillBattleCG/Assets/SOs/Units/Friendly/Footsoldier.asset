@@ -27,3 +27,6 @@ MonoBehaviour:
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
   DamageList: []
+  PlayList: []
+  DeathList:
+  - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}

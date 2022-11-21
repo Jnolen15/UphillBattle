@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
                 {
                     playerManager.Gold += 5;
                     playerManager.Courage += 5;
+                    playerManager.Health = 20;
                     cardManager.DrawCards(5);
                     enemyManager.PlaceEnemies(3);
                     firstTurn = false;
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
                 {
                     playerManager.Gold += 2;
                     playerManager.Courage -= 1;
+                    if (playerManager.Courage < 0) playerManager.Health += playerManager.Courage;
                     cardManager.DrawCards(2);
                 }
                 StartCoroutine(PauseTillNextState(2f));

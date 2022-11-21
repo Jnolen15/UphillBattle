@@ -6,7 +6,8 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private GameObject tokenPrefab;
-    [SerializeField] private List<UnitSO> AvailableEnemies = new List<UnitSO>();
+    [SerializeField] private List<UnitSO> FrontlineEnemies = new List<UnitSO>();
+    [SerializeField] private List<UnitSO> BacklineEnemies = new List<UnitSO>();
 
     // Need smarter place
     // More balanced picks
@@ -27,10 +28,19 @@ public class EnemyManager : MonoBehaviour
 
             if (randSlot == null) yield break;
 
-            var token = Instantiate<GameObject>(tokenPrefab, randSlot.transform);
-            var rand = Random.Range(0, AvailableEnemies.Count);
-            token.GetComponent<TokenUnit>().SetUp(AvailableEnemies[rand]);
-            randSlot.GetComponent<TokenSlot>().SlotToken(token);
+            if (randSlot.GetComponent<TokenSlot>().position == TokenSlot.Position.Frontline)
+            {
+                var token = Instantiate<GameObject>(tokenPrefab, randSlot.transform);
+                var rand = Random.Range(0, FrontlineEnemies.Count);
+                token.GetComponent<TokenUnit>().SetUp(FrontlineEnemies[rand]);
+                randSlot.GetComponent<TokenSlot>().SlotToken(token);
+            } else if (randSlot.GetComponent<TokenSlot>().position == TokenSlot.Position.Backline)
+            {
+                var token = Instantiate<GameObject>(tokenPrefab, randSlot.transform);
+                var rand = Random.Range(0, BacklineEnemies.Count);
+                token.GetComponent<TokenUnit>().SetUp(BacklineEnemies[rand]);
+                randSlot.GetComponent<TokenSlot>().SlotToken(token);
+            }
         }
     }
 }

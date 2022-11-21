@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI courageText;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     public GameObject tokenPrefab;
     public bool holdingCard;
@@ -14,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject tokenSpace;
     [SerializeField] private int gold;
     [SerializeField] private int courage;
+    [SerializeField] private int health;
 
     public int Gold
     {
@@ -31,6 +33,15 @@ public class PlayerManager : MonoBehaviour
         {
             courage = value;
             courageText.text = "Courage: " + courage.ToString();
+        }
+    }
+    public int Health
+    {
+        get { return health; }
+        set
+        {
+            health = value;
+            healthText.text = "Health: " + health.ToString();
         }
     }
 
