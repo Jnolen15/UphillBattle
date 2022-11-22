@@ -9,13 +9,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CardManager cardManager;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private List<int> killRewards = new List<int>();
     private bool firstTurn;
 
     [SerializeField] private GameObject EndTurnButton;
+    [SerializeField] private GameObject GrowDeckMenu;
+    [SerializeField] private GameObject ulockOption1;
+    [SerializeField] private GameObject ulockOption2;
 
     public enum State
     {
-        //Growdeck,
+        Growdeck,
         Setup,
         Play,
         PCombat,
@@ -26,11 +30,6 @@ public class GameManager : MonoBehaviour
 
     // FOR TESTING
     public TextMeshProUGUI phase;
-    public GameObject tokenPrefab;
-    public UnitSO goblinData;
-    public GameObject Slot1;
-    public GameObject Slot2;
-    public GameObject Slot3;
 
     void Awake()
     {
@@ -46,37 +45,13 @@ public class GameManager : MonoBehaviour
         ActivatePhase();
     }
 
-    void Update()
-    {
-        // For Testing
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AdvacePhase();
-            ActivatePhase();
-        }
-        phase.text = state.ToString();
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            var token = Instantiate<GameObject>(tokenPrefab, Slot1.transform);
-            token.GetComponent<TokenUnit>().SetUp(goblinData);
-            Slot1.GetComponent<TokenSlot>().SlotToken(token);
-
-            var token2 = Instantiate<GameObject>(tokenPrefab, Slot2.transform);
-            token2.GetComponent<TokenUnit>().SetUp(goblinData);
-            Slot2.GetComponent<TokenSlot>().SlotToken(token2);
-
-            var token3 = Instantiate<GameObject>(tokenPrefab, Slot3.transform);
-            token3.GetComponent<TokenUnit>().SetUp(goblinData);
-            Slot3.GetComponent<TokenSlot>().SlotToken(token3);
-        }
-    }
-
     public void AdvacePhase()
     {
         switch (state)
         {
-            /*case State.Growdeck:
-                break;*/
+            case State.Growdeck:
+                state = State.Setup;
+                break;
             case State.Setup:
                 state = State.Play;
                 break;
@@ -90,10 +65,11 @@ public class GameManager : MonoBehaviour
                 state = State.Reinforce;
                 break;
             case State.Reinforce:
-                state = State.Setup;
+                state = State.Growdeck;
                 break;
         }
 
+        phase.text = state.ToString();
         ActivatePhase();
     }
 
@@ -101,9 +77,21 @@ public class GameManager : MonoBehaviour
     {
         switch (state)
         {
-            /*case State.Growdeck:
-                break;*/
+            case State.Growdeck:
+                if (killRewards.Count > 0)
+                {
+                    if (playerManager.Kills >= killRewards[0])
+                    {
+                        GrowDeck();
+                    }
+                    else
+                        AdvacePhase();
+                }
+                else
+                    AdvacePhase();
+                break;
             case State.Setup:
+                // Innitial turn resources
                 if (firstTurn)
                 {
                     playerManager.Gold += 5;
@@ -144,5 +132,44 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(pauseTime);
         AdvacePhase();
+    }
+
+    private void GrowDeck()
+    {
+        if (killRewards.Count > 0)
+        {
+            if (playerManager.Kills >= killRewards[0])
+            {
+                Debug.Log("Kill reward for " + killRewards[0]);
+                killRewards.RemoveAt(0);
+                GrowDeckMenu.SetActive(true);
+                ulockOption1 = cardManager.GetUnlockableActionCard();
+                ulockOption2 = cardManager.GetUnlockableActionCard();
+
+                GrowDeckMenu.transform.GetChild(1).gameObject.GetComponent<CardVisual>().SetUp(ulockOption1.GetComponent<CardAction>().action);
+                GrowDeckMenu.transform.GetChild(2).gameObject.GetComponent<CardVisual>().SetUp(ulockOption2.GetComponent<CardAction>().action);
+            }
+        }
+    }
+
+    public void CloseGrowDeckMenu()
+    {
+        GrowDeckMenu.SetActive(false);
+        ActivatePhase();
+    }
+
+    public void ChooseGrowDeck(int choice)
+    {
+        if(choice == 1)
+        {
+            cardManager.AddToDeck(ulockOption1);
+        }
+        else if (choice == 2)
+        {
+            cardManager.AddToDeck(ulockOption2);
+        }
+
+        ulockOption1 = null;
+        ulockOption2 = null;
     }
 }

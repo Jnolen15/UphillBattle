@@ -7,7 +7,9 @@ public class CardManager : MonoBehaviour
     // ======== CARD PILES ========
     public List<GameObject> Deck = new List<GameObject>();
     public List<GameObject> Discards = new List<GameObject>();
-    public List<GameObject> OnBoard = new List<GameObject>(); 
+    public List<GameObject> OnBoard = new List<GameObject>();
+
+    public List<GameObject> UnlockableActionCards = new List<GameObject>();
 
     // ======== REFRENCES ========
     public PlayerHand hand;
@@ -88,5 +90,24 @@ public class CardManager : MonoBehaviour
         }
 
         Discards.Clear();
+    }
+
+    public GameObject GetUnlockableActionCard()
+    {
+        if(UnlockableActionCards.Count > 0)
+        {
+            int rand = Random.Range(0, UnlockableActionCards.Count);
+            var chosenCard = UnlockableActionCards[rand];
+            UnlockableActionCards.Remove(chosenCard);
+            return chosenCard;
+        }
+
+        return null;
+    }
+
+    public void AddToDeck(GameObject newcard)
+    {
+        Deck.Add(newcard);
+        Debug.Log("Added " + newcard);
     }
 }
