@@ -127,11 +127,11 @@ public class GameManager : MonoBehaviour
             case State.PCombat:
                 EndTurnButton.SetActive(false);
                 boardManager.PlayerCombat();
-                StartCoroutine(PauseTillNextState(2f));
+                //StartCoroutine(PauseTillNextState(2f));
                 break;
             case State.ECombat:
                 boardManager.EnemyCombat();
-                StartCoroutine(PauseTillNextState(2f));
+                //StartCoroutine(PauseTillNextState(2f));
                 break;
             case State.Reinforce:
                 enemyManager.PlaceEnemies(1);

@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "UnitFunctions/Attacks/BasicAttack")]
 public class BasicAttack : UnitFunction
 {
+    public bool isEnemy;
+
     public override void Activate(TokenUnit tUnit)
     {
         var data = tUnit.unit;
@@ -17,6 +19,12 @@ public class BasicAttack : UnitFunction
         if(target != null)
         {
             target.GetComponent<TokenUnit>().TakeDamage(data.attack);
+
+            // Slash effect
+            Quaternion rot = Quaternion.identity;
+            var slash = Instantiate(Resources.Load<GameObject>("Slash"), target.transform.position, rot, tUnit.gameObject.transform.parent.parent);
+            slash.GetComponent<SlashEffect>().Animate(isEnemy);
+            
             Debug.Log("Hit " + target.GetComponent<TokenUnit>().unit.name + " for " + data.attack);
         }
         else

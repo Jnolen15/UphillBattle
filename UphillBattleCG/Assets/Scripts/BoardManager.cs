@@ -11,6 +11,13 @@ public class BoardManager : MonoBehaviour
     public int rows;
     public int columns;
 
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
+
     public void TokenSloted(GameObject token)
     {
         if (OpenSlots.Contains(token))
@@ -33,34 +40,6 @@ public class BoardManager : MonoBehaviour
 
         if (token.GetComponent<TokenSlot>().type == TokenSlot.Type.Enemy)
             OpenEnemySlots.Add(token);
-    }
-
-    public void PlayerCombat()
-    {
-        Debug.Log("Starting Player Combat");
-
-        var start = (TokenSlots.Count / 2);
-        for (int i = start; i < TokenSlots.Count; i++)
-        {
-            if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())
-            {
-                TokenSlots[i].GetComponent<UnitControl>().AttackToken();
-            }
-        }
-    }
-
-    public void EnemyCombat()
-    {
-        Debug.Log("Starting Enemy Combat");
-
-        var end = (TokenSlots.Count / 2);
-        for (int i = 0; i < end; i++)
-        {
-            if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())
-            {
-                TokenSlots[i].GetComponent<UnitControl>().AttackToken();
-            }
-        }
     }
 
     public GameObject GetOpposingFrontline(TokenSlot ts)
@@ -113,5 +92,36 @@ public class BoardManager : MonoBehaviour
 
         var rand = Random.Range(0, OpenEnemySlots.Count);
         return OpenEnemySlots[rand];
+    }
+
+    public void PlayerCombat()
+    {
+        var start = (TokenSlots.Count / 2);
+        StartCoroutine(CombatWPauses(start, TokenSlots.Count));
+    }
+
+    public void EnemyCombat()
+    {
+        Debug.Log("Starting Enemy Combat");
+
+        var end = (TokenSlots.Count / 2);
+        StartCoroutine(CombatWPauses(0, end));
+    }
+
+    IEnumerator CombatWPauses(int start, int end)
+    {
+        Debug.Log("Starting Player Combat");
+
+        for (int i = start; i < end; i++)
+        {
+            if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())
+            {
+                TokenSlots[i].GetComponent<UnitControl>().AttackToken();
+
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        gameManager.AdvacePhase();
     }
 }
