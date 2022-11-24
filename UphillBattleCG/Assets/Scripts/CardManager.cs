@@ -10,6 +10,7 @@ public class CardManager : MonoBehaviour
     public List<GameObject> OnBoard = new List<GameObject>();
 
     public List<GameObject> UnlockableActionCards = new List<GameObject>();
+    public List<UnitSO> UpgradeCards = new List<UnitSO>();
 
     // ======== REFRENCES ========
     public PlayerHand hand;
@@ -109,5 +110,29 @@ public class CardManager : MonoBehaviour
     {
         Deck.Add(newcard);
         Debug.Log("Added " + newcard);
+    }
+
+    public void UpgradeUnits(UnitSO oldData, UnitSO newData)
+    {
+        UpgradeCardsInList(Deck, oldData, newData);
+        UpgradeCardsInList(hand.Hand, oldData, newData);
+        UpgradeCardsInList(Discards, oldData, newData);
+        UpgradeCardsInList(OnBoard, oldData, newData);
+    }
+
+    private void UpgradeCardsInList(List<GameObject> curlist, UnitSO oldData, UnitSO newData)
+    {
+        foreach (GameObject card in curlist)
+        {
+            var cardUnit = card.GetComponent<CardUnit>();
+            if (cardUnit)
+            {
+                if (cardUnit.unit == oldData)
+                {
+                    cardUnit.unit = newData;
+                    cardUnit.SetUp();
+                }
+            }
+        }
     }
 }

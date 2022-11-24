@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject GrowDeckMenu;
     [SerializeField] private GameObject ulockOption1;
     [SerializeField] private GameObject ulockOption2;
+    [SerializeField] private bool firstUpgrde;
 
     public enum State
     {
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case State.Growdeck:
+                UpgradeUnits();
                 if (killRewards.Count > 0)
                 {
                     if (playerManager.Kills >= killRewards[0])
@@ -115,11 +117,9 @@ public class GameManager : MonoBehaviour
             case State.PCombat:
                 EndTurnButton.SetActive(false);
                 boardManager.PlayerCombat();
-                //StartCoroutine(PauseTillNextState(2f));
                 break;
             case State.ECombat:
                 boardManager.EnemyCombat();
-                //StartCoroutine(PauseTillNextState(2f));
                 break;
             case State.Reinforce:
                 enemyManager.PlaceEnemies(1);
@@ -143,11 +143,13 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Kill reward for " + killRewards[0]);
                 killRewards.RemoveAt(0);
                 GrowDeckMenu.SetActive(true);
+                GrowDeckMenu.transform.GetChild(1).gameObject.SetActive(true);
+                GrowDeckMenu.transform.GetChild(2).gameObject.SetActive(false);
                 ulockOption1 = cardManager.GetUnlockableActionCard();
                 ulockOption2 = cardManager.GetUnlockableActionCard();
 
-                GrowDeckMenu.transform.GetChild(1).gameObject.GetComponent<CardVisual>().SetUp(ulockOption1.GetComponent<CardAction>().action);
-                GrowDeckMenu.transform.GetChild(2).gameObject.GetComponent<CardVisual>().SetUp(ulockOption2.GetComponent<CardAction>().action);
+                GrowDeckMenu.transform.GetChild(1).GetChild(0).gameObject.GetComponent<ActionCardVisual>().SetUp(ulockOption1.GetComponent<CardAction>().action);
+                GrowDeckMenu.transform.GetChild(1).GetChild(1).gameObject.GetComponent<ActionCardVisual>().SetUp(ulockOption2.GetComponent<CardAction>().action);
             }
         }
     }
@@ -171,5 +173,34 @@ public class GameManager : MonoBehaviour
 
         ulockOption1 = null;
         ulockOption2 = null;
+    }
+
+    private void UpgradeUnits()
+    {
+        GrowDeckMenu.SetActive(true);
+        GrowDeckMenu.transform.GetChild(1).gameObject.SetActive(false);
+        GrowDeckMenu.transform.GetChild(2).gameObject.SetActive(true);
+
+        if (firstUpgrde)
+        {
+            GrowDeckMenu.transform.GetChild(2).GetChild(0).gameObject.GetComponent<UnitCardVisual>().SetUp(cardManager.UpgradeCards[1]);
+            GrowDeckMenu.transform.GetChild(2).GetChild(1).gameObject.GetComponent<UnitCardVisual>().SetUp(cardManager.UpgradeCards[2]);
+        } else
+        {
+            GrowDeckMenu.transform.GetChild(2).GetChild(0).gameObject.GetComponent<UnitCardVisual>().SetUp(cardManager.UpgradeCards[4]);
+            GrowDeckMenu.transform.GetChild(2).GetChild(1).gameObject.GetComponent<UnitCardVisual>().SetUp(cardManager.UpgradeCards[5]);
+        }
+    }
+
+    public void ChooseUpgrade(GameObject unit)
+    {
+        Debug.Log("Chose upgrade " + unit.GetComponent<UnitCardVisual>().unit);
+
+        if(firstUpgrde)
+            cardManager.UpgradeUnits(cardManager.UpgradeCards[0], unit.GetComponent<UnitCardVisual>().unit);
+        else
+            cardManager.UpgradeUnits(cardManager.UpgradeCards[3], unit.GetComponent<UnitCardVisual>().unit);
+
+        firstUpgrde = false;
     }
 }

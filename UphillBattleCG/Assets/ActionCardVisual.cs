@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CardVisual : MonoBehaviour
+public class ActionCardVisual : MonoBehaviour
 {
     public ActionSO action;
 
