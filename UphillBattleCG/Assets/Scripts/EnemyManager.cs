@@ -15,6 +15,7 @@ public class EnemyManager : MonoBehaviour
 
     public void PlaceEnemies(int num)
     {
+        Debug.Log("Spawning " + num + "Enemies");
         StartCoroutine(PlaceEnemiesWPauses(num));
     }
 

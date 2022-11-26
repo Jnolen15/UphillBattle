@@ -1241,6 +1241,7 @@ MonoBehaviour:
   FrontlineEnemies:
   - {fileID: 11400000, guid: dc46041f807f3824a8806b06ddad1027, type: 2}
   - {fileID: 11400000, guid: 903f2ab06b825964488808dd33e7be17, type: 2}
+  - {fileID: 11400000, guid: cdfa8e6c025796147b51063453e4f2f7, type: 2}
   BacklineEnemies:
   - {fileID: 11400000, guid: dc46041f807f3824a8806b06ddad1027, type: 2}
 --- !u!1 &200491683 stripped

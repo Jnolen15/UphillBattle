@@ -148,6 +148,7 @@ public class TokenUnit : MonoBehaviour,
     public void Die()
     {
         Debug.Log(unit.title + " Dies");
+        gameManager.ClosePreview();
         OnDeath();
         tokenSlot.UnslotToken(gameObject);
         Destroy(gameObject);

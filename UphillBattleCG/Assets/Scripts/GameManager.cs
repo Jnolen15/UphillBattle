@@ -11,14 +11,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private List<int> killRewards = new List<int>();
     private bool firstTurn;
+    private int lastRoundKills;
 
     [SerializeField] private GameObject cardPreview;
     [SerializeField] private GameObject EndTurnButton;
     [SerializeField] private GameObject GrowDeckMenu;
     [SerializeField] private GameObject ulockOption1;
     [SerializeField] private GameObject ulockOption2;
-    [SerializeField] private bool hadFirstUpgrde;
-    [SerializeField] private bool hadSecondUpgrde;
+    private bool hadFirstUpgrde;
+    private bool hadSecondUpgrde;
 
     public enum State
     {
@@ -131,7 +132,16 @@ public class GameManager : MonoBehaviour
                 boardManager.EnemyCombat();
                 break;
             case State.Reinforce:
-                enemyManager.PlaceEnemies(1);
+                if (lastRoundKills < playerManager.Kills)
+                {
+                    var diff = playerManager.Kills - lastRoundKills;
+                    enemyManager.PlaceEnemies(diff);
+                    lastRoundKills = playerManager.Kills;
+                } else
+                {
+                    enemyManager.PlaceEnemies(1);
+                }
+                
                 StartCoroutine(PauseTillNextState(2f));
                 break;
         }
