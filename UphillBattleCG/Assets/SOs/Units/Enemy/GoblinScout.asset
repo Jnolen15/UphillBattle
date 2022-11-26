@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoblinScout
   m_EditorClassIdentifier: 
   art: {fileID: 21300000, guid: 397187d19629f1e4ca84c100f5d06cdd, type: 3}
-  cardArtOffset: {x: 0, y: 0}
-  cardArtSize: 0
+  cardArtOffset: {x: 0, y: -30}
+  cardArtSize: 0.1
   tokenArtOffset: {x: 0, y: -85}
   tokenArtSize: 0.14
   cost: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   attack: 1
   armor: 0
   title: Goblin Scout
-  description: 
+  description: '"Though weak, they are many"'
   position: 2
   AttackList:
   - {fileID: 11400000, guid: 9d03845a32b61ff4d9e9fcc11c627078, type: 2}

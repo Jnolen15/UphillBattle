@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class TokenUnit : MonoBehaviour
+public class TokenUnit : MonoBehaviour,
+        IPointerEnterHandler,
+        IPointerExitHandler
 {
     public UnitSO unit;
     public TokenSlot tokenSlot;
     public BoardManager boardManager;
     public PlayerManager playerManager;
+    public GameManager gameManager;
 
     // ========= Visual Componenets =========
     [SerializeField] private TextMeshProUGUI healthText;
@@ -17,6 +21,19 @@ public class TokenUnit : MonoBehaviour
     [SerializeField] private GameObject armor;
     [SerializeField] private TextMeshProUGUI damageText;
     [SerializeField] private Image art;
+
+    // ========== MOUSE CONTROLS ==========
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Hovered over " + unit.title);
+        gameManager.PreviewCard(unit);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("Hovered off " + unit.title);
+        gameManager.ClosePreview();
+    }
 
     // ========= Token Functionality =========
     [SerializeField] private int tHealth;
@@ -57,6 +74,7 @@ public class TokenUnit : MonoBehaviour
         tokenSlot = this.GetComponentInParent<TokenSlot>();
         boardManager = this.GetComponentInParent<BoardManager>();
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         // Visuals
         healthText.text = unit.health.ToString();

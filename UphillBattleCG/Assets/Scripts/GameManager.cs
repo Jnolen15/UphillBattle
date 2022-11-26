@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<int> killRewards = new List<int>();
     private bool firstTurn;
 
+    [SerializeField] private GameObject cardPreview;
     [SerializeField] private GameObject EndTurnButton;
     [SerializeField] private GameObject GrowDeckMenu;
     [SerializeField] private GameObject ulockOption1;
@@ -84,12 +85,11 @@ public class GameManager : MonoBehaviour
                 {
                     UpgradeUnits();
                 }
-                if (playerManager.Kills >= 20 && !hadSecondUpgrde)
+                else if (playerManager.Kills >= 20 && !hadSecondUpgrde)
                 {
                     UpgradeUnits();
                 }
-                
-                if (killRewards.Count > 0)
+                else if (killRewards.Count > 0)
                 {
                     if (playerManager.Kills >= killRewards[0])
                     {
@@ -214,5 +214,16 @@ public class GameManager : MonoBehaviour
             hadFirstUpgrde = true;
         else if (!hadSecondUpgrde)
             hadSecondUpgrde = true;
+    }
+
+    public void PreviewCard(UnitSO data)
+    {
+        cardPreview.GetComponent<UnitCardVisual>().SetUp(data);
+        cardPreview.SetActive(true);
+    }
+
+    public void ClosePreview()
+    {
+        cardPreview.SetActive(false);
     }
 }

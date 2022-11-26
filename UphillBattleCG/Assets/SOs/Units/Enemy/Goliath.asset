@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   art: {fileID: 21300000, guid: a6040f7b862b16c4fbb375d06db68037, type: 3}
   cardArtOffset: {x: 0, y: 0}
-  cardArtSize: 0
+  cardArtSize: 0.09
   tokenArtOffset: {x: 0, y: -45}
   tokenArtSize: 0.12
   cost: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   attack: 2
   armor: 0
   title: Goliath
-  description: Beeg Man
+  description: '"The ground shakes as it approaches"'
   position: 0
   AttackList:
   - {fileID: 11400000, guid: 9d03845a32b61ff4d9e9fcc11c627078, type: 2}

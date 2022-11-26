@@ -396,17 +396,20 @@ MonoBehaviour:
   unit: {fileID: 0}
   tokenSlot: {fileID: 0}
   boardManager: {fileID: 0}
+  playerManager: {fileID: 0}
   healthText: {fileID: 5122999074917820607}
   armorText: {fileID: 5122999075171320050}
   armor: {fileID: 5122999075819446197}
   damageText: {fileID: 5122999075656093561}
   art: {fileID: 5122999075223547328}
-  isEnemy: 0
+  cardPreview: {fileID: 0}
   tHealth: 0
   tDamage: 0
   tArmor: 0
   AttackList: []
   DamageList: []
+  PlayList: []
+  DeathList: []
 --- !u!1 &5122999075171320048
 GameObject:
   m_ObjectHideFlags: 0
