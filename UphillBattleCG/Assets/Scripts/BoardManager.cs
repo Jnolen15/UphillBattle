@@ -42,6 +42,27 @@ public class BoardManager : MonoBehaviour
             OpenEnemySlots.Add(token);
     }
 
+    public List<GameObject> GetRow(TokenSlot ts)
+    {
+        List<GameObject> rowList = new List<GameObject>();
+
+        foreach(GameObject slot in TokenSlots)
+        {
+            if (slot.GetComponent<TokenSlot>().type == ts.type)
+            {
+                if (slot.GetComponent<TokenSlot>().position == ts.position)
+                    rowList.Add(slot);
+            }
+        }
+
+        foreach(GameObject slot in rowList)
+        {
+            Debug.Log(slot);
+        }
+
+        return rowList;
+    }
+
     public GameObject GetOpposingFrontline(TokenSlot ts)
     {
         var thisPos = TokenSlots.IndexOf(ts.gameObject);
@@ -84,6 +105,26 @@ public class BoardManager : MonoBehaviour
             return slot.GetComponent<TokenSlot>().slotedToken;
 
         return null;
+    }
+
+    // Only used to show slash when enemy is attacking player
+    public GameObject GetOpposingEmpty(TokenSlot ts)
+    {
+        var thisPos = TokenSlots.IndexOf(ts.gameObject);
+        var dist = 0;
+        GameObject slot = TokenSlots[thisPos];
+
+        if (ts.position == TokenSlot.Position.Frontline)
+            dist = 3;
+        else if (ts.position == TokenSlot.Position.Backline)
+            dist = 6;
+
+        if (ts.type == TokenSlot.Type.Friendly)
+            slot = TokenSlots[thisPos - dist];
+        else if (ts.type == TokenSlot.Type.Enemy)
+            slot = TokenSlots[thisPos + dist];
+
+        return slot;
     }
 
     public GameObject GetRandomOpenEnemySlot()

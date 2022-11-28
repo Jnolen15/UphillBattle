@@ -82,6 +82,47 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    public void DrawSpecific(UnitSO data)
+    {
+        Debug.Log("Looking for " + data.title);
+
+        var foundCard = false;
+        foreach (GameObject card in Deck)
+        {
+            var cur = card.GetComponent<CardUnit>();
+            if(cur != null)
+            {
+                Debug.Log("Looking at " + card + ": " + cur.unit.title);
+                if (data.title == cur.unit.title)
+                {
+                    Deck.Remove(card);
+                    hand.AddCard(card);
+                    foundCard = true;
+                    break;
+                }
+            }
+        }
+
+        if (!foundCard)
+        {
+            foreach (GameObject card in Discards)
+            {
+                var cur = card.GetComponent<CardUnit>();
+                if (cur != null)
+                {
+                    Debug.Log("Looking at " + card + ": " + cur.unit.title);
+                    if (data.title == cur.unit.title)
+                    {
+                        Discards.Remove(card);
+                        hand.AddCard(card);
+                        foundCard = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     // Adds discard pile into deck pile
     private void ShuffleDiscards()
     {
@@ -99,12 +140,24 @@ public class CardManager : MonoBehaviour
         {
             int rand = Random.Range(0, UnlockableActionCards.Count);
             var chosenCard = UnlockableActionCards[rand];
-            UnlockableActionCards.Remove(chosenCard);
             return chosenCard;
         }
 
         return null;
     }
+
+    public void RemoveUnlockable(ActionSO data)
+    {
+        foreach (GameObject card in UnlockableActionCards)
+        {
+            if (card.GetComponent<CardAction>().action == data)
+            {
+                UnlockableActionCards.Remove(card);
+                break;
+            }
+        }
+    }
+
 
     public void AddToDeck(GameObject newcard)
     {

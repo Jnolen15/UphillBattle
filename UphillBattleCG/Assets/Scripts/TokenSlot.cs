@@ -45,11 +45,14 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     // ========= TOKEN FUNCTION =========
-    public bool CanTargetToken(bool needEmpty, string ctype, string cpos)
+    public bool CanTargetToken(bool needEmpty, bool targetAmbiguous, string ctype, string cpos)
     {
         // Token slot is empty or not
-        if(needEmpty && HasToken()) return false;
-        if (!needEmpty && !HasToken()) return false;
+        if (!targetAmbiguous)
+        {
+            if (needEmpty && HasToken()) return false;
+            if (!needEmpty && !HasToken()) return false;
+        }
 
         // Friendly
         if (type == Type.Friendly)
@@ -86,7 +89,7 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         BoardManager.TokenSloted(gameObject);
     }
 
-    public void UnslotToken(GameObject token)
+    public void UnslotToken()
     {
         uc.RemoveUnit();
         slotedToken = null;

@@ -25,13 +25,13 @@ public class TokenUnit : MonoBehaviour,
     // ========== MOUSE CONTROLS ==========
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Hovered over " + unit.title);
+        //Debug.Log("Hovered over " + unit.title);
         gameManager.PreviewCard(unit);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Hovered off " + unit.title);
+        //Debug.Log("Hovered off " + unit.title);
         gameManager.ClosePreview();
     }
 
@@ -154,7 +154,7 @@ public class TokenUnit : MonoBehaviour,
         Debug.Log(unit.title + " Dies");
         gameManager.ClosePreview();
         OnDeath();
-        tokenSlot.UnslotToken(gameObject);
+        tokenSlot.UnslotToken();
         Destroy(gameObject);
     }
 

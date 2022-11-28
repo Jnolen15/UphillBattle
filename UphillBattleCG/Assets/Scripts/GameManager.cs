@@ -44,6 +44,14 @@ public class GameManager : MonoBehaviour
         firstTurn = true;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            playerManager.Gold += 5;
+        }
+    }
+
     private void Start()
     {
         ActivatePhase();
@@ -114,7 +122,7 @@ public class GameManager : MonoBehaviour
                     firstTurn = false;
                 } else
                 {
-                    playerManager.Gold += 2;
+                    playerManager.Gold += 3;
                     playerManager.Courage -= 1;
                     if (playerManager.Courage < 0) playerManager.Health += playerManager.Courage;
                     cardManager.DrawCards(2);
@@ -185,10 +193,12 @@ public class GameManager : MonoBehaviour
         if(choice == 1)
         {
             cardManager.AddToDeck(ulockOption1);
+            cardManager.RemoveUnlockable(ulockOption1.GetComponent<CardAction>().action);
         }
         else if (choice == 2)
         {
             cardManager.AddToDeck(ulockOption2);
+            cardManager.RemoveUnlockable(ulockOption2.GetComponent<CardAction>().action);
         }
 
         ulockOption1 = null;

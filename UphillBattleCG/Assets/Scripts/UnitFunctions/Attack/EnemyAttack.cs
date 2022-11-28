@@ -17,6 +17,12 @@ public class EnemyAttack : UnitFunction
         {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>().Health -= tUnit.TDamage;
             Debug.Log("Hit for " + tUnit.TDamage + " now " + GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>().Health);
+
+            // Slash effect
+            target = tUnit.boardManager.GetOpposingEmpty(tUnit.tokenSlot);
+            Quaternion rot = Quaternion.identity;
+            var slash = Instantiate(Resources.Load<GameObject>("Slash"), target.transform.position, rot, target.gameObject.transform.parent.parent);
+            slash.GetComponent<SlashEffect>().Animate(true);
         }
     }
 }

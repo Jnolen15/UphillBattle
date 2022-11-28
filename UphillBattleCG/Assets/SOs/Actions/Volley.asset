@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2b94f27116652499d457511b1e26ce, type: 3}
+  m_Name: Volley
+  m_EditorClassIdentifier: 
+  art: {fileID: 0}
+  cardArtOffset: {x: 0, y: 0}
+  cardArtSize: 0
+  cost: 2
+  title: Volley
+  description: Deal 2 damage to all enemies in row.
+  position: 2
+  needEmpty: 0
+  targetAmbiguous: 1
+  FuncList:
+  - {fileID: 11400000, guid: 654c5cd337fee6e4eabdde9da4488c60, type: 2}

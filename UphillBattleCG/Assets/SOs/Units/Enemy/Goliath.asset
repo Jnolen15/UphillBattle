@@ -25,10 +25,11 @@ MonoBehaviour:
   description: '"The ground shakes as it approaches"'
   position: 0
   AttackList:
-  - {fileID: 11400000, guid: 9d03845a32b61ff4d9e9fcc11c627078, type: 2}
   - {fileID: 11400000, guid: ef63ba4faa96cfc46a41fc4c29797e31, type: 2}
+  - {fileID: 11400000, guid: 9d03845a32b61ff4d9e9fcc11c627078, type: 2}
   DamageList: []
   PlayList: []
+  OnTurnList: []
   DeathList:
   - {fileID: 11400000, guid: 12038e0e937125d429d8e62070b8e319, type: 2}
   - {fileID: 11400000, guid: 33dbcd3fd3dbe084e920bfcd71407dfb, type: 2}

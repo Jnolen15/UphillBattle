@@ -81,7 +81,7 @@ public class PlayerManager : MonoBehaviour
 
         // Correct position
         var ts = tokenSpace.GetComponent<TokenSlot>();
-        var canPlay = ts.CanTargetToken(true, "Friendly", unitData.position.ToString());
+        var canPlay = ts.CanTargetToken(true, false, "Friendly", unitData.position.ToString());
         if (!canPlay) return false;
 
         // Can afford it
@@ -104,32 +104,34 @@ public class PlayerManager : MonoBehaviour
         // Correct position
         var ts = tokenSpace.GetComponent<TokenSlot>();
         var canPlay = false;
+
         switch (actionData.position)
         {
             default:
                 break;
             case ActionSO.Position.Anywhere:
-                canPlay = ts.CanTargetToken(actionData.needTarget, "Anywhere", "Versatile");
+                canPlay = ts.CanTargetToken(actionData.needEmpty, actionData.targetAmbiguous, "Anywhere", "Versatile");
                 break;
             case ActionSO.Position.Friendly:
-                canPlay = ts.CanTargetToken(actionData.needTarget, "Friendly", "Versatile");
+                canPlay = ts.CanTargetToken(actionData.needEmpty, actionData.targetAmbiguous, "Friendly", "Versatile");
                 break;
             case ActionSO.Position.FFrontline:
-                canPlay = ts.CanTargetToken(actionData.needTarget, "Friendly", "Frontline");
+                canPlay = ts.CanTargetToken(actionData.needEmpty, actionData.targetAmbiguous, "Friendly", "Frontline");
                 break;
             case ActionSO.Position.FBackline:
-                canPlay = ts.CanTargetToken(actionData.needTarget, "Friendly", "Backline");
+                canPlay = ts.CanTargetToken(actionData.needEmpty, actionData.targetAmbiguous, "Friendly", "Backline");
                 break;
             case ActionSO.Position.Enemy:
-                canPlay = ts.CanTargetToken(actionData.needTarget, "Enemy", "Versatile");
+                canPlay = ts.CanTargetToken(actionData.needEmpty, actionData.targetAmbiguous, "Enemy", "Versatile");
                 break;
             case ActionSO.Position.EFrontline:
-                canPlay = ts.CanTargetToken(actionData.needTarget, "Enemy", "Frontline");
+                canPlay = ts.CanTargetToken(actionData.needEmpty, actionData.targetAmbiguous, "Enemy", "Frontline");
                 break;
             case ActionSO.Position.EBackline:
-                canPlay = ts.CanTargetToken(actionData.needTarget, "Enemy", "Backline");
+                canPlay = ts.CanTargetToken(actionData.needEmpty, actionData.targetAmbiguous, "Enemy", "Backline");
                 break;
         }
+        
         if (!canPlay) return false;
 
         // Can afford it

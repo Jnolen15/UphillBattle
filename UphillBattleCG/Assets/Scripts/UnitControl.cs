@@ -42,4 +42,19 @@ public class UnitControl : MonoBehaviour
     {
         tUnit.TakeDamage(dmg);
     }
+
+    public int GetTokenHealth()
+    {
+        return tUnit.THealth;
+    }
+
+    public void AddArmor(int ammount)
+    {
+        tUnit.TArmor += ammount;
+    }
+
+    public void AddAttack(int ammount)
+    {
+        tUnit.TDamage += ammount;
+    }
 }

@@ -25,7 +25,8 @@ public class ActionSO : ScriptableObject
         EBackline
     }
     public Position position;
-    public bool needTarget;
+    public bool needEmpty;
+    public bool targetAmbiguous;
 
     public List<ActionFunction> FuncList = new List<ActionFunction>();
 
