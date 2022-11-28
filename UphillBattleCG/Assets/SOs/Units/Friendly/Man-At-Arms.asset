@@ -18,8 +18,8 @@ MonoBehaviour:
   tokenArtOffset: {x: -18, y: -250}
   tokenArtSize: 0.18
   cost: 2
-  health: 3
-  attack: 2
+  health: 6
+  attack: 4
   armor: 0
   title: Man-At-Arms
   description: 

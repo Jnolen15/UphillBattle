@@ -18,16 +18,17 @@ MonoBehaviour:
   tokenArtOffset: {x: 0, y: -150}
   tokenArtSize: 0.14
   cost: 3
-  health: 2
-  attack: 3
-  armor: 0
+  health: 5
+  attack: 5
+  armor: 1
   title: Paladin
-  description: When played, gain armor equal to current courage.
+  description: Start with 1 armor. After surviving damage, gain 1 armor.
   position: 0
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
-  DamageList: []
-  PlayList:
-  - {fileID: 11400000, guid: 3f58ed729ef08ce4b83dda32d1c6e2ac, type: 2}
+  DamageList:
+  - {fileID: 11400000, guid: 6a63cf10fc986274288d48088338ba7d, type: 2}
+  PlayList: []
+  OnTurnList: []
   DeathList:
   - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}

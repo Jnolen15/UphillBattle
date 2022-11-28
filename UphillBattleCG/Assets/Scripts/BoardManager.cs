@@ -94,6 +94,18 @@ public class BoardManager : MonoBehaviour
         return OpenEnemySlots[rand];
     }
 
+    public void PlayerTurn()
+    {
+        var start = (TokenSlots.Count / 2);
+        for (int i = start; i < TokenSlots.Count; i++)
+        {
+            if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())
+            {
+                TokenSlots[i].GetComponent<UnitControl>().OnTurnToken();
+            }
+        }
+    }
+
     public void PlayerCombat()
     {
         var start = (TokenSlots.Count / 2);

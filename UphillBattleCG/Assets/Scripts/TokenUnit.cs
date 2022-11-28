@@ -103,6 +103,9 @@ public class TokenUnit : MonoBehaviour,
         
         foreach (UnitFunction func in unit.DeathList)
             DeathList.Add(func);
+        
+        foreach (UnitFunction func in unit.OnTurnList)
+            OnTurnList.Add(func);
 
         // On Play
         OnPlay();
@@ -131,7 +134,6 @@ public class TokenUnit : MonoBehaviour,
         // If say you wanted an effect where incoming damage was scaled
         // Make a public incomingDamage variable
         // Then modify that damage in the SO function
-        OnDamage();
 
         if (TArmor > 0)
         {
@@ -143,6 +145,8 @@ public class TokenUnit : MonoBehaviour,
         }
 
         if (THealth <= 0) Die();
+
+        OnDamage();
     }
 
     public void Die()
@@ -158,13 +162,25 @@ public class TokenUnit : MonoBehaviour,
     [SerializeField] private List<UnitFunction> AttackList = new List<UnitFunction>();
     [SerializeField] private List<UnitFunction> DamageList = new List<UnitFunction>();
     [SerializeField] private List<UnitFunction> PlayList = new List<UnitFunction>();
+    [SerializeField] private List<UnitFunction> OnTurnList = new List<UnitFunction>();
     [SerializeField] private List<UnitFunction> DeathList = new List<UnitFunction>();
 
     public void OnPlay()
     {
-        if (AttackList.Count > 0)
+        if (PlayList.Count > 0)
         {
             foreach (UnitFunction function in PlayList)
+            {
+                function.Activate(this);
+            }
+        }
+    }
+
+    public void OnTurn()
+    {
+        if (OnTurnList.Count > 0)
+        {
+            foreach (UnitFunction function in OnTurnList)
             {
                 function.Activate(this);
             }

@@ -33,6 +33,11 @@ public class UnitControl : MonoBehaviour
         tUnit.OnAttack();
     }
 
+    public void OnTurnToken()
+    {
+        tUnit.OnTurn();
+    }
+
     public void DamageToken(int dmg)
     {
         tUnit.TakeDamage(dmg);

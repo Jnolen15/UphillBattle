@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
                 break;
             case State.PCombat:
                 EndTurnButton.SetActive(false);
+                boardManager.PlayerTurn();
                 boardManager.PlayerCombat();
                 break;
             case State.ECombat:

@@ -9,8 +9,7 @@ public class BasicAttack : UnitFunction
 
     public override void Activate(TokenUnit tUnit)
     {
-        var data = tUnit.unit;
-        Debug.Log(data.title + " is attacking for " + data.attack);
+        Debug.Log(tUnit.unit.title + " is attacking for " + tUnit.TDamage);
 
         var target = tUnit.boardManager.GetOpposingFrontline(tUnit.tokenSlot);
         if(target == null)
@@ -18,14 +17,14 @@ public class BasicAttack : UnitFunction
 
         if(target != null)
         {
-            target.GetComponent<TokenUnit>().TakeDamage(data.attack);
+            target.GetComponent<TokenUnit>().TakeDamage(tUnit.TDamage);
 
             // Slash effect
             Quaternion rot = Quaternion.identity;
             var slash = Instantiate(Resources.Load<GameObject>("Slash"), target.transform.position, rot, tUnit.gameObject.transform.parent.parent);
             slash.GetComponent<SlashEffect>().Animate(isEnemy);
             
-            Debug.Log("Hit " + target.GetComponent<TokenUnit>().unit.name + " for " + data.attack);
+            Debug.Log("Hit " + target.GetComponent<TokenUnit>().unit.name + " for " + tUnit.TDamage);
         }
         else
         {

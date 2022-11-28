@@ -18,16 +18,17 @@ MonoBehaviour:
   tokenArtOffset: {x: 0, y: -150}
   tokenArtSize: 0.14
   cost: 3
-  health: 2
-  attack: 3
+  health: 8
+  attack: 2
   armor: 0
   title: Gladiator
-  description: When played, gain armor equal to current courage.
+  description: Gain an attack bonus based on current courage.
   position: 0
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
   DamageList: []
-  PlayList:
-  - {fileID: 11400000, guid: 3f58ed729ef08ce4b83dda32d1c6e2ac, type: 2}
+  PlayList: []
+  OnTurnList:
+  - {fileID: 11400000, guid: db4210d51f04c6b4b9928879a0fabb90, type: 2}
   DeathList:
   - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}

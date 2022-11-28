@@ -18,15 +18,16 @@ MonoBehaviour:
   tokenArtOffset: {x: -18, y: -250}
   tokenArtSize: 0.18
   cost: 2
-  health: 3
+  health: 4
   attack: 2
   armor: 0
   title: Spearman
-  description: 
-  position: 2
+  description: Attacks both front and backline.
+  position: 1
   AttackList:
-  - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
+  - {fileID: 11400000, guid: d2ce3bf3b3cdaa24eb9ad635fe07ee1e, type: 2}
   DamageList: []
   PlayList: []
+  OnTurnList: []
   DeathList:
   - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}

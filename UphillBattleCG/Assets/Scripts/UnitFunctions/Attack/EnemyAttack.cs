@@ -7,8 +7,7 @@ public class EnemyAttack : UnitFunction
 {
     public override void Activate(TokenUnit tUnit)
     {
-        var data = tUnit.unit;
-        Debug.Log(data.title + " is attacking Player for " + data.attack);
+        Debug.Log(tUnit.unit.title + " is attacking Player for " + tUnit.TDamage);
 
         var target = tUnit.boardManager.GetOpposingFrontline(tUnit.tokenSlot);
         if (target == null)
@@ -16,8 +15,8 @@ public class EnemyAttack : UnitFunction
 
         if (target == null)
         {
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>().Health -= data.attack;
-            Debug.Log("Hit for " + data.attack + " now " + GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>().Health);
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>().Health -= tUnit.TDamage;
+            Debug.Log("Hit for " + tUnit.TDamage + " now " + GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>().Health);
         }
     }
 }
