@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private BoardManager boardManager;
+    public BoardManager boardManager;
     [SerializeField] private CardManager cardManager;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private EnemyManager enemyManager;

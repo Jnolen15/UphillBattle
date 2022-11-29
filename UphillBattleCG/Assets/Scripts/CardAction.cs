@@ -46,4 +46,34 @@ public class CardAction : Card
             playerManager.CardPlayed();
         }
     }
+
+    public override void OnDrag()
+    {
+        switch (action.position)
+        {
+            default:
+                break;
+            case ActionSO.Position.Anywhere:
+                boardManager.HighlightSlots(action.needEmpty, action.targetAmbiguous, "Anywhere", "Versatile");
+                break;
+            case ActionSO.Position.Friendly:
+                boardManager.HighlightSlots(action.needEmpty, action.targetAmbiguous, "Friendly", "Versatile");
+                break;
+            case ActionSO.Position.FFrontline:
+                boardManager.HighlightSlots(action.needEmpty, action.targetAmbiguous, "Friendly", "Frontline");
+                break;
+            case ActionSO.Position.FBackline:
+                boardManager.HighlightSlots(action.needEmpty, action.targetAmbiguous, "Friendly", "Backline");
+                break;
+            case ActionSO.Position.Enemy:
+                boardManager.HighlightSlots(action.needEmpty, action.targetAmbiguous, "Enemy", "Versatile");
+                break;
+            case ActionSO.Position.EFrontline:
+                boardManager.HighlightSlots(action.needEmpty, action.targetAmbiguous, "Enemy", "Frontline");
+                break;
+            case ActionSO.Position.EBackline:
+                boardManager.HighlightSlots(action.needEmpty, action.targetAmbiguous, "Enemy", "Backline");
+                break;
+        }
+    }
 }

@@ -51,4 +51,9 @@ public class CardUnit : Card
             playerManager.CardPlayed();
         }
     }
+
+    public override void OnDrag()
+    {
+        boardManager.HighlightSlots(true, false, "Friendly", unit.position.ToString());
+    }
 }

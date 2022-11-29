@@ -14,11 +14,13 @@ public abstract class Card : MonoBehaviour,
     private GameObject indicator;
     public PlayerManager playerManager;
     public GameManager gameManager;
+    public BoardManager boardManager;
 
     private void Start()
     {
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        boardManager = gameManager.boardManager;
     }
 
     private void OnEnable()
@@ -45,6 +47,7 @@ public abstract class Card : MonoBehaviour,
         {
             indicator = Instantiate(Resources.Load<GameObject>("PlayIndicator"), transform.parent.parent.parent);
             playerManager.HoldingCard(this.gameObject);
+            OnDrag();
         }
     }
 
@@ -60,6 +63,7 @@ public abstract class Card : MonoBehaviour,
         {
             GameObject.Destroy(indicator);
             Play();
+            boardManager.ClearHighlight();
         }
     }
 
@@ -67,4 +71,6 @@ public abstract class Card : MonoBehaviour,
     public abstract void SetUp();
 
     public abstract void Play();
+
+    public abstract void OnDrag();
 }

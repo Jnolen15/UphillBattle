@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour
 {
+    public Color SlotDefault;
+    public Color SlotPlayable;
+    public Color SlotNotPlayable;
+
     public List<GameObject> TokenSlots = new List<GameObject>();
     public List<GameObject> OpenSlots = new List<GameObject>();
     public List<GameObject> OpenEnemySlots = new List<GameObject>();
+    public List<GameObject> MarkerSlots = new List<GameObject>();
 
     public int rows;
     public int columns;
@@ -206,5 +212,31 @@ public class BoardManager : MonoBehaviour
         }
 
         gameManager.AdvacePhase();
+    }
+
+    public void HighlightSlots(bool needEmpty, bool targetAmbiguous, string ctype, string cpos)
+    {
+        foreach(GameObject slot in TokenSlots)
+        {
+            var canPlace = slot.GetComponent<TokenSlot>().CanTargetToken(needEmpty, targetAmbiguous, ctype, cpos);
+            
+            if (canPlace)
+            {
+                //slot.GetComponent<Image>().color = SlotPlayable;
+                MarkerSlots[TokenSlots.IndexOf(slot)].SetActive(true);
+            } else
+            {
+                //slot.GetComponent<Image>().color = SlotNotPlayable;
+                MarkerSlots[TokenSlots.IndexOf(slot)].SetActive(false);
+            }
+        }
+    }
+
+    public void ClearHighlight()
+    {
+        foreach (GameObject marker in MarkerSlots)
+        {
+            marker.SetActive(false);
+        }
     }
 }
