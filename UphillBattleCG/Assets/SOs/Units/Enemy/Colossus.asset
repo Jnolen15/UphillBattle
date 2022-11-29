@@ -23,6 +23,7 @@ MonoBehaviour:
   armor: 0
   title: Colossus
   description: Attacks hit all units
+  hasAbility: 1
   position: 0
   AttackList:
   - {fileID: 11400000, guid: d3ee8ebf8326cfb4c8d09d1ca2c3c05f, type: 2}

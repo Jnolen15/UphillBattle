@@ -194,12 +194,12 @@ public class GameManager : MonoBehaviour
         if(choice == 1)
         {
             cardManager.AddToDeck(ulockOption1);
-            cardManager.RemoveUnlockable(ulockOption1.GetComponent<CardAction>().action);
+            cardManager.UnlockableActionCards.Add(ulockOption2);
         }
         else if (choice == 2)
         {
             cardManager.AddToDeck(ulockOption2);
-            cardManager.RemoveUnlockable(ulockOption2.GetComponent<CardAction>().action);
+            cardManager.UnlockableActionCards.Add(ulockOption1);
         }
 
         ulockOption1 = null;

@@ -23,6 +23,7 @@ MonoBehaviour:
   armor: 1
   title: Paladin
   description: Start with 1 armor. After surviving damage, gain 1 armor.
+  hasAbility: 1
   position: 0
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}

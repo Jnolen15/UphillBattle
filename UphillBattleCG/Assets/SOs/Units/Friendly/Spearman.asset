@@ -23,6 +23,7 @@ MonoBehaviour:
   armor: 0
   title: Spearman
   description: Attacks both front and backline.
+  hasAbility: 1
   position: 1
   AttackList:
   - {fileID: 11400000, guid: d2ce3bf3b3cdaa24eb9ad635fe07ee1e, type: 2}

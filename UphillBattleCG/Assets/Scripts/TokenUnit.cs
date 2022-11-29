@@ -20,6 +20,7 @@ public class TokenUnit : MonoBehaviour,
     [SerializeField] private TextMeshProUGUI armorText;
     [SerializeField] private GameObject armor;
     [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private GameObject moreInfo;
     [SerializeField] private Image art;
 
     // ========== MOUSE CONTROLS ==========
@@ -91,8 +92,13 @@ public class TokenUnit : MonoBehaviour,
         TDamage = unit.attack;
         TArmor = unit.armor;
 
+        if (unit.hasAbility)
+            moreInfo.SetActive(true);
+        else
+            moreInfo.SetActive(false);
+
         // Lists
-        foreach(UnitFunction func in unit.AttackList)
+        foreach (UnitFunction func in unit.AttackList)
             AttackList.Add(func);
 
         foreach (UnitFunction func in unit.DamageList)

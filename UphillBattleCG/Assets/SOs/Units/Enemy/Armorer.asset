@@ -23,6 +23,7 @@ MonoBehaviour:
   armor: 0
   title: Armorer
   description: +1 Armor each turn
+  hasAbility: 1
   position: 2
   AttackList:
   - {fileID: 11400000, guid: ef63ba4faa96cfc46a41fc4c29797e31, type: 2}

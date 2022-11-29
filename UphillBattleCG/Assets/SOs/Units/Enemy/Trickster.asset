@@ -23,6 +23,7 @@ MonoBehaviour:
   armor: 0
   title: Trickster
   description: On attack, reduce targets attack value by 1.
+  hasAbility: 1
   position: 2
   AttackList:
   - {fileID: 11400000, guid: 3871af6df2ccf2840be0d8a64889b715, type: 2}

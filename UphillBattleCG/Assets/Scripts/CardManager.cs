@@ -148,22 +148,11 @@ public class CardManager : MonoBehaviour
         {
             int rand = Random.Range(0, UnlockableActionCards.Count);
             var chosenCard = UnlockableActionCards[rand];
+            UnlockableActionCards.Remove(chosenCard);
             return chosenCard;
         }
 
         return null;
-    }
-
-    public void RemoveUnlockable(ActionSO data)
-    {
-        foreach (GameObject card in UnlockableActionCards)
-        {
-            if (card.GetComponent<CardAction>().action == data)
-            {
-                UnlockableActionCards.Remove(card);
-                break;
-            }
-        }
     }
 
 

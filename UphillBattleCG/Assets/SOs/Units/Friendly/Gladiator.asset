@@ -23,6 +23,7 @@ MonoBehaviour:
   armor: 0
   title: Gladiator
   description: Gain an attack bonus based on current courage.
+  hasAbility: 1
   position: 0
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}

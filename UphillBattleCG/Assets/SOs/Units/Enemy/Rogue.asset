@@ -22,7 +22,8 @@ MonoBehaviour:
   attack: 2
   armor: 0
   title: Rogue
-  description: Piercing
+  description: Attacks hit both front and backline
+  hasAbility: 1
   position: 1
   AttackList:
   - {fileID: 11400000, guid: ef63ba4faa96cfc46a41fc4c29797e31, type: 2}

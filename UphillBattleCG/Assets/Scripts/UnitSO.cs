@@ -19,6 +19,8 @@ public class UnitSO : ScriptableObject
     public string title;
     public string description;
 
+    public bool hasAbility;
+
     public enum Position
     {
         Frontline,

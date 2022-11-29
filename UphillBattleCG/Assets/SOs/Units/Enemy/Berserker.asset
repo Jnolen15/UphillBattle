@@ -23,6 +23,7 @@ MonoBehaviour:
   armor: 0
   title: Berserker
   description: Multiattack
+  hasAbility: 1
   position: 0
   AttackList:
   - {fileID: 11400000, guid: ef63ba4faa96cfc46a41fc4c29797e31, type: 2}
