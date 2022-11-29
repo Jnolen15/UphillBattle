@@ -107,8 +107,7 @@ public class BoardManager : MonoBehaviour
         return null;
     }
 
-    // Only used to show slash when enemy is attacking player
-    public GameObject GetOpposingEmpty(TokenSlot ts)
+    public GameObject GetOpposingFrontlineSlot(TokenSlot ts)
     {
         var thisPos = TokenSlots.IndexOf(ts.gameObject);
         var dist = 0;
@@ -118,6 +117,25 @@ public class BoardManager : MonoBehaviour
             dist = 3;
         else if (ts.position == TokenSlot.Position.Backline)
             dist = 6;
+
+        if (ts.type == TokenSlot.Type.Friendly)
+            slot = TokenSlots[thisPos - dist];
+        else if (ts.type == TokenSlot.Type.Enemy)
+            slot = TokenSlots[thisPos + dist];
+
+        return slot;
+    }
+
+    public GameObject GetOpposingBacklineSlot(TokenSlot ts)
+    {
+        var thisPos = TokenSlots.IndexOf(ts.gameObject);
+        var dist = 0;
+        GameObject slot = TokenSlots[thisPos];
+
+        if (ts.position == TokenSlot.Position.Frontline)
+            dist = 6;
+        else if (ts.position == TokenSlot.Position.Backline)
+            dist = 9;
 
         if (ts.type == TokenSlot.Type.Friendly)
             slot = TokenSlots[thisPos - dist];
@@ -139,6 +157,18 @@ public class BoardManager : MonoBehaviour
     {
         var start = (TokenSlots.Count / 2);
         for (int i = start; i < TokenSlots.Count; i++)
+        {
+            if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())
+            {
+                TokenSlots[i].GetComponent<UnitControl>().OnTurnToken();
+            }
+        }
+    }
+
+    public void EnemyTurn()
+    {
+        var end = (TokenSlots.Count / 2);
+        for (int i = 0; i < end; i++)
         {
             if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())
             {

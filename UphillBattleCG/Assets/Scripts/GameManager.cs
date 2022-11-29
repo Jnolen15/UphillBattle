@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
                 boardManager.PlayerCombat();
                 break;
             case State.ECombat:
+                boardManager.EnemyTurn();
                 boardManager.EnemyCombat();
                 break;
             case State.Reinforce:

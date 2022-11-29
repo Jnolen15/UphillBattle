@@ -8,6 +8,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject tokenPrefab;
     [SerializeField] private List<UnitSO> FrontlineEnemies = new List<UnitSO>();
     [SerializeField] private List<UnitSO> BacklineEnemies = new List<UnitSO>();
+    [SerializeField] private List<UnitSO> T2FrontlineEnemies = new List<UnitSO>();
+    [SerializeField] private List<UnitSO> T2BacklineEnemies = new List<UnitSO>();
+    [SerializeField] private List<UnitSO> T3FrontlineEnemies = new List<UnitSO>();
+    [SerializeField] private List<UnitSO> T3BacklineEnemies = new List<UnitSO>();
 
     // Need smarter place
     // More balanced picks

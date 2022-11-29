@@ -1373,11 +1373,17 @@ MonoBehaviour:
   boardManager: {fileID: 1557347813}
   tokenPrefab: {fileID: 5122999074987323664, guid: 2ab20f5fd08808741966cd1c262c02db, type: 3}
   FrontlineEnemies:
-  - {fileID: 11400000, guid: dc46041f807f3824a8806b06ddad1027, type: 2}
-  - {fileID: 11400000, guid: 903f2ab06b825964488808dd33e7be17, type: 2}
-  - {fileID: 11400000, guid: cdfa8e6c025796147b51063453e4f2f7, type: 2}
+  - {fileID: 11400000, guid: 6dda1c927325588429c66050856eea08, type: 2}
+  - {fileID: 11400000, guid: 1519c2dce828b5f48862cc608d35a7d2, type: 2}
+  - {fileID: 11400000, guid: 1d0ad7eb7ffd2554d8ecd66640b0d576, type: 2}
   BacklineEnemies:
-  - {fileID: 11400000, guid: dc46041f807f3824a8806b06ddad1027, type: 2}
+  - {fileID: 11400000, guid: 6dda1c927325588429c66050856eea08, type: 2}
+  - {fileID: 11400000, guid: 1519c2dce828b5f48862cc608d35a7d2, type: 2}
+  - {fileID: 11400000, guid: 1d0ad7eb7ffd2554d8ecd66640b0d576, type: 2}
+  T2FrontlineEnemies: []
+  T2BacklineEnemies: []
+  T3FrontlineEnemies: []
+  T3BacklineEnemies: []
 --- !u!1 &200491683 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4213856103778461075, guid: c7b973b6759b1024f822c2e4e3f9624c, type: 3}
@@ -7215,7 +7221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1691713409
 RectTransform:
   m_ObjectHideFlags: 0
