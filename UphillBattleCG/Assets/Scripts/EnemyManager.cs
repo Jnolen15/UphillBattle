@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private BoardManager boardManager;
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] private GameObject tokenPrefab;
     [SerializeField] private List<UnitSO> FrontlineEnemies = new List<UnitSO>();
     [SerializeField] private List<UnitSO> BacklineEnemies = new List<UnitSO>();
@@ -17,13 +18,31 @@ public class EnemyManager : MonoBehaviour
     // More balanced picks
     // Place enemies into their correct lanes
 
-    public void PlaceEnemies(int num)
+    private void Awake()
     {
-        Debug.Log("Spawning " + num + "Enemies");
-        StartCoroutine(PlaceEnemiesWPauses(num));
+        playerManager = gameObject.GetComponent<PlayerManager>();
     }
 
-    IEnumerator PlaceEnemiesWPauses(int num)
+    public void PlaceEnemies(int num)
+    {
+        if (playerManager.Kills < 12)
+        {
+            Debug.Log("Spawning " + num + " T1 Enemies");
+            StartCoroutine(PlaceEnemiesWPauses(num, FrontlineEnemies, BacklineEnemies));
+        }
+        else if (playerManager.Kills >= 12 && playerManager.Kills < 20)
+        {
+            Debug.Log("Spawning " + num + " T2 Enemies");
+            StartCoroutine(PlaceEnemiesWPauses(num, T2FrontlineEnemies, T2BacklineEnemies));
+        }
+        else if (playerManager.Kills >= 20)
+        {
+            Debug.Log("Spawning " + num + " T3 Enemies");
+            StartCoroutine(PlaceEnemiesWPauses(num, T3FrontlineEnemies, T3BacklineEnemies));
+        }
+    }
+
+    IEnumerator PlaceEnemiesWPauses(int num, List<UnitSO> frontlineEnemies, List<UnitSO> backlineEnemies)
     {
         for (int i = 0; i < num; i++)
         {
@@ -36,14 +55,14 @@ public class EnemyManager : MonoBehaviour
             if (randSlot.GetComponent<TokenSlot>().position == TokenSlot.Position.Frontline)
             {
                 var token = Instantiate<GameObject>(tokenPrefab, randSlot.transform);
-                var rand = Random.Range(0, FrontlineEnemies.Count);
-                token.GetComponent<TokenUnit>().SetUp(FrontlineEnemies[rand]);
+                var rand = Random.Range(0, frontlineEnemies.Count);
+                token.GetComponent<TokenUnit>().SetUp(frontlineEnemies[rand]);
                 randSlot.GetComponent<TokenSlot>().SlotToken(token);
             } else if (randSlot.GetComponent<TokenSlot>().position == TokenSlot.Position.Backline)
             {
                 var token = Instantiate<GameObject>(tokenPrefab, randSlot.transform);
-                var rand = Random.Range(0, BacklineEnemies.Count);
-                token.GetComponent<TokenUnit>().SetUp(BacklineEnemies[rand]);
+                var rand = Random.Range(0, backlineEnemies.Count);
+                token.GetComponent<TokenUnit>().SetUp(backlineEnemies[rand]);
                 randSlot.GetComponent<TokenSlot>().SlotToken(token);
             }
         }

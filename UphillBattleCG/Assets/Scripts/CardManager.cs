@@ -84,13 +84,21 @@ public class CardManager : MonoBehaviour
 
     public void DrawSpecific(UnitSO data)
     {
+        // Hackey solution for return to hand card sometimes not working right
+        StartCoroutine(DrawACard(data));
+    }
+
+    IEnumerator DrawACard(UnitSO data)
+    {
+        yield return new WaitForSeconds(0.2f);
+
         Debug.Log("Looking for " + data.title);
 
         var foundCard = false;
         foreach (GameObject card in Deck)
         {
             var cur = card.GetComponent<CardUnit>();
-            if(cur != null)
+            if (cur != null)
             {
                 Debug.Log("Looking at " + card + ": " + cur.unit.title);
                 if (data.title == cur.unit.title)
