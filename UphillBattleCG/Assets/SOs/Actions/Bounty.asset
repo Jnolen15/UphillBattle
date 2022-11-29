@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2b94f27116652499d457511b1e26ce, type: 3}
   m_Name: Bounty
   m_EditorClassIdentifier: 
-  art: {fileID: 0}
-  cardArtOffset: {x: 0, y: 0}
-  cardArtSize: 0
+  art: {fileID: 21300000, guid: ef090d03b519cfd4e82e20ed1d041b77, type: 3}
+  cardArtOffset: {x: 0, y: -20}
+  cardArtSize: 0.08
   cost: 0
   title: Bounty
   description: Deal 1 damage to an enemy, if that kills it gain 1 gold.
   position: 2
-  noTargetNeeded: 0
+  needEmpty: 0
+  targetAmbiguous: 0
   FuncList:
   - {fileID: 11400000, guid: 61d53d4e599a46e4fbf225f85d526442, type: 2}
