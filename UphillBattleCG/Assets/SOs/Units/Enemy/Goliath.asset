@@ -21,8 +21,10 @@ MonoBehaviour:
   health: 8
   attack: 2
   armor: 0
+  tag: Goliath
   title: Goliath
   description: '"The ground shakes as it approaches"'
+  hasAbility: 0
   position: 0
   AttackList:
   - {fileID: 11400000, guid: ef63ba4faa96cfc46a41fc4c29797e31, type: 2}

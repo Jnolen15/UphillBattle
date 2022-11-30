@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
                     firstTurn = false;
                 } else
                 {
-                    playerManager.Gold += 3;
+                    playerManager.Gold += 2;
                     playerManager.Courage -= 1;
                     if (playerManager.Courage < 0) playerManager.Health += playerManager.Courage;
                     cardManager.DrawCards(2);

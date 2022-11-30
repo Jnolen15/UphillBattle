@@ -21,8 +21,10 @@ MonoBehaviour:
   health: 4
   attack: 1
   armor: 0
+  tag: Scout
   title: Scout
   description: '"Though weak, they are many"'
+  hasAbility: 0
   position: 2
   AttackList:
   - {fileID: 11400000, guid: ef63ba4faa96cfc46a41fc4c29797e31, type: 2}

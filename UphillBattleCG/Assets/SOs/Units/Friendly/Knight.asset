@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 2
   attack: 3
   armor: 0
+  tag: Knight
   title: Knight
   description: When played, gain armor equal to current courage.
   hasAbility: 1

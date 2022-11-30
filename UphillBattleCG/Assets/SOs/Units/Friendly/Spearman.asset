@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db093b4f8ed83f346adc7980022e256b, type: 3}
   m_Name: Spearman
   m_EditorClassIdentifier: 
-  art: {fileID: 21300000, guid: dbba1bba7ab10c34ea363ec5d9f1730f, type: 3}
+  art: {fileID: 21300000, guid: 71e728e00e0401a4cbaa4741600f50fc, type: 3}
   cardArtOffset: {x: 0, y: -110}
   cardArtSize: 0.12
   tokenArtOffset: {x: -18, y: -250}
@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 4
   attack: 2
   armor: 0
+  tag: Footsoldier
   title: Spearman
   description: Attacks both front and backline.
   hasAbility: 1

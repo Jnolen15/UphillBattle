@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 10
   attack: 2
   armor: 0
+  tag: Goliath
   title: Colossus
   description: Attacks hit all units
   hasAbility: 1

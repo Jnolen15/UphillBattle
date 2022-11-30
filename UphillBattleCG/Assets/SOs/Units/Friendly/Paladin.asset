@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 5
   attack: 5
   armor: 1
+  tag: Knight
   title: Paladin
   description: Start with 1 armor. After surviving damage, gain 1 armor.
   hasAbility: 1

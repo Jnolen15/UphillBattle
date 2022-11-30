@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 6
   attack: 1
   armor: 0
+  tag: Scout
   title: Trickster
   description: On attack, reduce targets attack value by 1.
   hasAbility: 1

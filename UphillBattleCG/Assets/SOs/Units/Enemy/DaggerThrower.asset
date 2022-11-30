@@ -21,8 +21,10 @@ MonoBehaviour:
   health: 2
   attack: 3
   armor: 0
+  tag: Scout
   title: Dagger Thrower
   description: '"Expert blade throwers"'
+  hasAbility: 0
   position: 1
   AttackList:
   - {fileID: 11400000, guid: ef63ba4faa96cfc46a41fc4c29797e31, type: 2}

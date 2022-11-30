@@ -73,7 +73,7 @@ public class CardManager : MonoBehaviour
     {
         foreach(GameObject card in OnBoard)
         {
-            if(data.title == card.GetComponent<CardUnit>().unit.title)
+            if(data.tag == card.GetComponent<CardUnit>().unit.tag)
             {
                 OnBoard.Remove(card);
                 Discards.Add(card);
@@ -101,7 +101,7 @@ public class CardManager : MonoBehaviour
             if (cur != null)
             {
                 Debug.Log("Looking at " + card + ": " + cur.unit.title);
-                if (data.title == cur.unit.title)
+                if (data.tag == cur.unit.tag)
                 {
                     Deck.Remove(card);
                     hand.AddCard(card);

@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 7
   attack: 1
   armor: 0
+  tag: Warrior
   title: Champion
   description: +1 Attack each turn
   hasAbility: 1

@@ -20,7 +20,8 @@ MonoBehaviour:
   cost: 0
   health: 3
   attack: 3
-  armor: 0
+  armor: 1
+  tag: Warrior
   title: Armorer
   description: +1 Armor each turn
   hasAbility: 1

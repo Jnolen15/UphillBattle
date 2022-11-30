@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2b94f27116652499d457511b1e26ce, type: 3}
   m_Name: Cower
   m_EditorClassIdentifier: 
-  art: {fileID: 0}
+  art: {fileID: 21300000, guid: 8cccbfe60591d3e48af90141a6f54632, type: 3}
   cardArtOffset: {x: 0, y: 0}
-  cardArtSize: 0
+  cardArtSize: 0.08
   cost: 1
   title: Cower
   description: -2 courage, target unit +6 armor.

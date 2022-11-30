@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 8
   attack: 2
   armor: 0
+  tag: Knight
   title: Gladiator
   description: Gain an attack bonus based on current courage.
   hasAbility: 1

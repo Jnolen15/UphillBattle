@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db093b4f8ed83f346adc7980022e256b, type: 3}
   m_Name: Footsoldier
   m_EditorClassIdentifier: 
-  art: {fileID: 21300000, guid: dbba1bba7ab10c34ea363ec5d9f1730f, type: 3}
+  art: {fileID: 21300000, guid: 71e728e00e0401a4cbaa4741600f50fc, type: 3}
   cardArtOffset: {x: 0, y: -110}
   cardArtSize: 0.12
   tokenArtOffset: {x: -18, y: -250}
@@ -21,12 +21,15 @@ MonoBehaviour:
   health: 3
   attack: 2
   armor: 0
+  tag: Footsoldier
   title: Footsoldier
   description: 
+  hasAbility: 0
   position: 2
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
   DamageList: []
   PlayList: []
+  OnTurnList: []
   DeathList:
   - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}

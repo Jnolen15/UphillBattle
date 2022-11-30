@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 6
   attack: 3
   armor: 0
+  tag: Commander
   title: Commander
   description: Generates 1 courage each turn.
   hasAbility: 1

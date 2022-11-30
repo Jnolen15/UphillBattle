@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2b94f27116652499d457511b1e26ce, type: 3}
   m_Name: Retreat
   m_EditorClassIdentifier: 
-  art: {fileID: 0}
-  cardArtOffset: {x: 0, y: 0}
-  cardArtSize: 0
+  art: {fileID: 21300000, guid: 5f44acb6c7a266d419489142803525ab, type: 3}
+  cardArtOffset: {x: 0, y: 15}
+  cardArtSize: 0.08
   cost: 0
   title: Retreat
   description: -2 courage, return target friendly unit to your hand.

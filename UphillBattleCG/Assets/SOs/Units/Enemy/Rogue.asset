@@ -21,6 +21,7 @@ MonoBehaviour:
   health: 5
   attack: 2
   armor: 0
+  tag: Scout
   title: Rogue
   description: Attacks hit both front and backline
   hasAbility: 1

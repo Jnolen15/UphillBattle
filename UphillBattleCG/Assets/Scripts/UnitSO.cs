@@ -16,6 +16,7 @@ public class UnitSO : ScriptableObject
     public int attack;
     public int armor;
 
+    public string tag;
     public string title;
     public string description;
 
