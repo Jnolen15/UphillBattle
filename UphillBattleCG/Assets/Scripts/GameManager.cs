@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public BoardManager boardManager;
+    [SerializeField] private MenuManager menuManager;
     [SerializeField] private CardManager cardManager;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private EnemyManager enemyManager;
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     private int lastRoundKills;
     private int lastRoundDeaths;
 
+    [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject cardPreview;
     [SerializeField] private GameObject EndTurnButton;
     [SerializeField] private GameObject GrowDeckMenu;
@@ -47,17 +50,42 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        // Wait for Lost
+        if (playerManager.Health <= 0)
         {
-            playerManager.Gold += 5;
+            LooseGame();
+        }
+
+        // Wait for Win
+        if (playerManager.Kills >= 30)
+        {
+            WinGame();
         }
     }
 
-    private void Start()
+    // ============== SCENE MANAGEMENT ==============
+    public void StartGame()
     {
+        menuManager.CloseMain();
         ActivatePhase();
     }
 
+    public void LooseGame()
+    {
+        menuManager.OpenLost();
+    }
+
+    public void WinGame()
+    {
+        menuManager.OpenWon();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // ============== GAME STATES ==============
     public void AdvacePhase()
     {
         switch (state)
@@ -169,6 +197,7 @@ public class GameManager : MonoBehaviour
         AdvacePhase();
     }
 
+    // ============== DECK UPGRADING ==============
     private void GrowDeck()
     {
         if (killRewards.Count > 0)
@@ -250,6 +279,7 @@ public class GameManager : MonoBehaviour
             hadSecondUpgrde = true;
     }
 
+    // ============== CARD PREVIEW ==============
     public void PreviewCard(UnitSO data)
     {
         cardPreview.GetComponent<UnitCardVisual>().SetUp(data);
