@@ -11,9 +11,11 @@ public class CardManager : MonoBehaviour
 
     public List<GameObject> UnlockableActionCards = new List<GameObject>();
     public List<UnitSO> UpgradeCards = new List<UnitSO>();
+    public List<GameObject> ExtraUnitCards = new List<GameObject>();
 
     // ======== REFRENCES ========
     public PlayerHand hand;
+    public GameObject unitCardPrefab;
 
     void Update()
     {
@@ -182,6 +184,19 @@ public class CardManager : MonoBehaviour
                     cardUnit.unit = newData;
                     cardUnit.SetUp();
                 }
+            }
+        }
+    }
+
+    public void GetExtraUnitCard(UnitSO data)
+    {
+        foreach(GameObject card in ExtraUnitCards)
+        {
+            if (data.title == card.GetComponent<CardUnit>().unit.title)
+            {
+                ExtraUnitCards.Remove(card);
+                Deck.Add(card);
+                break;
             }
         }
     }

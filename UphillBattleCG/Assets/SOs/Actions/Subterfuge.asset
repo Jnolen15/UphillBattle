@@ -15,9 +15,11 @@ MonoBehaviour:
   art: {fileID: 0}
   cardArtOffset: {x: 0, y: 0}
   cardArtSize: 0
-  cost: 1
+  cost: 0
   title: Subterfuge
   description: -1 courage, 3 damage to target
   position: 2
+  needEmpty: 0
+  targetAmbiguous: 0
   FuncList:
   - {fileID: 11400000, guid: 093df546e81eb9648b8ff27e0e45debe, type: 2}

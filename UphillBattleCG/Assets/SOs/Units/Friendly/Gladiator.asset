@@ -34,3 +34,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db4210d51f04c6b4b9928879a0fabb90, type: 2}
   DeathList:
   - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}
+  - {fileID: 11400000, guid: 557a4b14b6e142f4b92934022ffca66b, type: 2}

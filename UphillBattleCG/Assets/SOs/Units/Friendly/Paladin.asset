@@ -19,7 +19,7 @@ MonoBehaviour:
   tokenArtSize: 0.14
   cost: 3
   health: 5
-  attack: 5
+  attack: 6
   armor: 1
   tag: Knight
   title: Paladin
@@ -34,3 +34,4 @@ MonoBehaviour:
   OnTurnList: []
   DeathList:
   - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}
+  - {fileID: 11400000, guid: 557a4b14b6e142f4b92934022ffca66b, type: 2}

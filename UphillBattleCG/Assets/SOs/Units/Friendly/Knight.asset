@@ -24,7 +24,7 @@ MonoBehaviour:
   tag: Knight
   title: Knight
   description: When played, gain armor equal to current courage.
-  hasAbility: 1
+  hasAbility: 0
   position: 0
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
@@ -34,3 +34,4 @@ MonoBehaviour:
   OnTurnList: []
   DeathList:
   - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}
+  - {fileID: 11400000, guid: 557a4b14b6e142f4b92934022ffca66b, type: 2}

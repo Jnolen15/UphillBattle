@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<int> killRewards = new List<int>();
     private bool firstTurn;
     private int lastRoundKills;
+    private int lastRoundDeaths;
 
     [SerializeField] private GameObject cardPreview;
     [SerializeField] private GameObject EndTurnButton;
@@ -125,7 +126,7 @@ public class GameManager : MonoBehaviour
                     playerManager.Gold += 2;
                     playerManager.Courage -= 1;
                     if (playerManager.Courage < 0) playerManager.Health += playerManager.Courage;
-                    cardManager.DrawCards(2);
+                    cardManager.DrawCards(3);
                 }
                 StartCoroutine(PauseTillNextState(2f));
                 break;
@@ -142,11 +143,16 @@ public class GameManager : MonoBehaviour
                 boardManager.EnemyCombat();
                 break;
             case State.Reinforce:
-                if (lastRoundKills < playerManager.Kills)
+                if (lastRoundKills < playerManager.Kills || lastRoundDeaths < playerManager.Deaths)
                 {
-                    var diff = playerManager.Kills - lastRoundKills;
-                    enemyManager.PlaceEnemies(diff);
+                    var killdiff = playerManager.Kills - lastRoundKills;
+                    var deathdiff = playerManager.Deaths - lastRoundDeaths;
+                    var numEnemies = killdiff - deathdiff;
+                    if (numEnemies < 0) numEnemies = 0;
+                    Debug.Log("kills this round: " + killdiff + " Deaths this round: " + deathdiff + " number of enemies to spawn: " + numEnemies);
+                    enemyManager.PlaceEnemies(numEnemies);
                     lastRoundKills = playerManager.Kills;
+                    lastRoundDeaths = playerManager.Deaths;
                 } else
                 {
                     enemyManager.PlaceEnemies(1);
@@ -227,10 +233,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Chose upgrade " + unit.GetComponent<UnitCardVisual>().unit);
 
-        if(!hadFirstUpgrde)
+        if (!hadFirstUpgrde)
+        {
             cardManager.UpgradeUnits(cardManager.UpgradeCards[0], unit.GetComponent<UnitCardVisual>().unit);
+            cardManager.GetExtraUnitCard(unit.GetComponent<UnitCardVisual>().unit);
+        }
         else if (!hadSecondUpgrde)
+        {
             cardManager.UpgradeUnits(cardManager.UpgradeCards[3], unit.GetComponent<UnitCardVisual>().unit);
+            cardManager.GetExtraUnitCard(unit.GetComponent<UnitCardVisual>().unit);
+        }
 
         if (!hadFirstUpgrde)
             hadFirstUpgrde = true;

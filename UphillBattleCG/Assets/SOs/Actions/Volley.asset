@@ -15,7 +15,7 @@ MonoBehaviour:
   art: {fileID: 21300000, guid: c4d773601171e764c8a53ddd2a99eb20, type: 3}
   cardArtOffset: {x: 0, y: 0}
   cardArtSize: 0.08
-  cost: 2
+  cost: 1
   title: Volley
   description: Deal 2 damage to all enemies in row.
   position: 2

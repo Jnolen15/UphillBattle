@@ -15,7 +15,7 @@ MonoBehaviour:
   art: {fileID: 0}
   cardArtOffset: {x: 0, y: 0}
   cardArtSize: 0
-  cost: 2
+  cost: 1
   title: Inspiring Speech
   description: Gain 3 Courage.
   position: 0
