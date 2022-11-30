@@ -108,6 +108,12 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         //StopAllCoroutines();
         StartCoroutine(LerpPos());
     }
+    public void AnimateHorizontal(bool reverse)
+    {
+        //StopAllCoroutines();
+        StartCoroutine(LerpHorizontal(reverse));
+    }
+
 
     IEnumerator LerpPos()
     {
@@ -127,5 +133,35 @@ public class TokenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         transform.localPosition = endPos;
+    }
+
+    IEnumerator LerpHorizontal(bool reverse)
+    {
+        float time = 0;
+        float duration = 0.3f;
+        Vector3 startPos = transform.localPosition;
+        Vector3 endPos = new Vector3(transform.localPosition.x, transform.localPosition.y + 60, transform.localPosition.z);
+        if(reverse)
+            endPos = new Vector3(transform.localPosition.x, transform.localPosition.y - 60, transform.localPosition.z);
+
+        while (time < duration)
+        {
+            if(time < duration / 2)
+            {
+                float t = time / (duration / 2);
+                t = t * t * (3f - 2f * t);
+                transform.localPosition = Vector3.Lerp(startPos, endPos, t);
+            } else
+            {
+                float t = time / duration;
+                t = t * t * (3f - 2f * t);
+                transform.localPosition = Vector3.Lerp(endPos, startPos, t);
+            }
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localPosition = startPos;
     }
 }

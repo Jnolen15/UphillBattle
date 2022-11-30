@@ -30,6 +30,11 @@ public class UnitControl : MonoBehaviour
 
     public void AttackToken()
     {
+        if (ts.type == TokenSlot.Type.Friendly)
+            ts.AnimateHorizontal(false);
+        else if (ts.type == TokenSlot.Type.Enemy)
+            ts.AnimateHorizontal(true);
+
         tUnit.OnAttack();
     }
 

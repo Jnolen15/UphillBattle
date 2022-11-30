@@ -137,10 +137,6 @@ public class TokenUnit : MonoBehaviour,
     // ========= Combat Functionality =========
     public void TakeDamage(int dmg)
     {
-        // If say you wanted an effect where incoming damage was scaled
-        // Make a public incomingDamage variable
-        // Then modify that damage in the SO function
-
         if (TArmor > 0)
         {
             TArmor -= dmg;
