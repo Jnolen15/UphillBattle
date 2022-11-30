@@ -7829,7 +7829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194445896412750507, guid: 24764f1ba5e4c564187d42ecb3c5c3ef, type: 3}
       propertyPath: m_Name
-      value: SubterfugeActionCard (1)
+      value: UnethicalTacticsActionCard (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7194445896412750507, guid: 24764f1ba5e4c564187d42ecb3c5c3ef, type: 3}
       propertyPath: m_IsActive
@@ -10538,7 +10538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194445896412750507, guid: 24764f1ba5e4c564187d42ecb3c5c3ef, type: 3}
       propertyPath: m_Name
-      value: SubterfugeActionCard
+      value: UnethicalTacticsActionCard
       objectReference: {fileID: 0}
     - target: {fileID: 7194445896412750507, guid: 24764f1ba5e4c564187d42ecb3c5c3ef, type: 3}
       propertyPath: m_IsActive
