@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 27320
+  controlID: 40070
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 27321
+  controlID: 40071
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 27269
+  controlID: 40062
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -186,8 +186,8 @@ MonoBehaviour:
     y: 0
     width: 275
     height: 617
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -226,7 +226,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 36fbffff7e5a0000bc5a0000185b0000845b0000d25b0000d65b0000325c0000485c0000505c0000685c0000925c0000a25c0000ec5c0000f45c00002e5d0000365d00005a5d0000a85d0000b85d00004c5e0000705e0000805e0000dc5e0000f25e00001c5f00001e5f00006a5f0000
+      m_ExpandedIDs: d002ffffd402ffffae14ffffba19ffff1028ffff36fbffff7e5a0000bc5a0000185b0000845b0000d25b0000325c0000485c0000505c0000625c0000685c0000925c0000ec5c0000f45c00005a5d0000a85d0000b85d00004c5e0000705e0000dc5e0000f25e00001c5f00001e5f00006a5f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -505,9 +505,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 521.47754, y: 281.2664, z: -2.924235}
+    m_Target: {x: 532.1353, y: 271.62384, z: 1.4297786}
     speed: 2
-    m_Value: {x: 521.47754, y: 281.2664, z: -2.924235}
+    m_Value: {x: 532.1353, y: 271.62384, z: 1.4297786}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -558,9 +558,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 330.08145
+    m_Target: 319.36288
     speed: 2
-    m_Value: 330.08145
+    m_Value: 319.36288
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -786,21 +786,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Sprites
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Sprites
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Legod\Desktop\Folders\Game Projects\UphillBattle\UphillBattleCG
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 56620000
-    m_LastClickedID: 25174
+    scrollPos: {x: 0, y: 129}
+    m_SelectedIDs: 6e620000
+    m_LastClickedID: 25198
     m_ExpandedIDs: 0000000046620000486200004a6200004c6200004e6200005062000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -854,8 +854,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f45c0000
-    m_LastClickedInstanceID: 23796
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -881,7 +881,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 127}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -973,7 +973,7 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 23796
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

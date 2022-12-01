@@ -23,4 +23,9 @@ public class MenuManager : MonoBehaviour
         WonScreen.SetActive(true);
     }
 
+    public void CloseWon()
+    {
+        WonScreen.SetActive(false);
+    }
+
 }
