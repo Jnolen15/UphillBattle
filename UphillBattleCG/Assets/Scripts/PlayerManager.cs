@@ -8,8 +8,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI courageText;
     [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private TextMeshProUGUI killsText;
-    [SerializeField] private TextMeshProUGUI deathsText;
+    //[SerializeField] private TextMeshProUGUI killsText;
+    //[SerializeField] private TextMeshProUGUI deathsText;
 
     public GameObject tokenPrefab;
     public bool holdingCard;
@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
         set
         {
             gold = value;
-            goldText.text = "Gold: " + gold.ToString();
+            goldText.text = gold.ToString();
         }
     }
     public int Courage
@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
                 courage = 10;
             if (courage < -5)
                 courage = -5;
-            courageText.text = "Courage: " + courage.ToString();
+            courageText.text = courage.ToString();
         }
     }
     public int Health
@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour
         set
         {
             health = value;
-            healthText.text = "Health: " + health.ToString();
+            healthText.text = health.ToString();
         }
     }
     public int Kills
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         set
         {
             kills = value;
-            killsText.text = "Kills: " + kills.ToString();
+            //killsText.text = "Kills: " + kills.ToString();
         }
     }
     public int Deaths
@@ -67,7 +67,7 @@ public class PlayerManager : MonoBehaviour
         set
         {
             deaths = value;
-            deathsText.text = "Deaths: " + deaths.ToString();
+            //deathsText.text = "Deaths: " + deaths.ToString();
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Audio;
 
 public abstract class Card : MonoBehaviour, 
     IPointerEnterHandler,
@@ -16,11 +17,19 @@ public abstract class Card : MonoBehaviour,
     public GameManager gameManager;
     public BoardManager boardManager;
 
+    [Header("Shield Settings")]
+    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip hover;
+    [SerializeField] private AudioClip startDrag;
+    [SerializeField] private AudioClip play;
+
     private void Start()
     {
         playerManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerManager>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         boardManager = gameManager.boardManager;
+
+        source = this.GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -33,6 +42,7 @@ public abstract class Card : MonoBehaviour,
     public void OnPointerEnter(PointerEventData eventData)
     {
         this.transform.parent.GetComponent<HandSlot>().HighlightSlot(true);
+        source.PlayOneShot(hover);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -45,6 +55,7 @@ public abstract class Card : MonoBehaviour,
     {
         if (gameManager.state == GameManager.State.Play)
         {
+            source.PlayOneShot(startDrag);
             indicator = Instantiate(Resources.Load<GameObject>("PlayIndicator"), transform.parent.parent.parent);
             playerManager.HoldingCard(this.gameObject);
             OnDrag();
