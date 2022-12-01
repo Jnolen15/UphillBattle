@@ -23,6 +23,13 @@ public class TokenUnit : MonoBehaviour,
     [SerializeField] private GameObject moreInfo;
     [SerializeField] private Image art;
 
+    // ========== Audio ==========
+    [Header("Sounds")]
+    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip EnemyPlayed;
+    [SerializeField] private AudioClip FriendlyPlayed;
+    [SerializeField] private AudioClip startDrag;
+
     // ========== MOUSE CONTROLS ==========
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -112,6 +119,12 @@ public class TokenUnit : MonoBehaviour,
         
         foreach (UnitFunction func in unit.OnTurnList)
             OnTurnList.Add(func);
+
+        // Audio
+        if(tokenSlot.type == TokenSlot.Type.Enemy)
+            source.PlayOneShot(EnemyPlayed);
+        else if (tokenSlot.type == TokenSlot.Type.Friendly)
+            source.PlayOneShot(FriendlyPlayed);
 
         // On Play
         OnPlay();

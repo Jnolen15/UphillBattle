@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject ulockOption2;
     private bool hadFirstUpgrde;
     private bool hadSecondUpgrde;
+
+    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip DealCards;
+    [SerializeField] private AudioClip GiveCoins;
 
     public enum State
     {
@@ -139,6 +144,8 @@ public class GameManager : MonoBehaviour
                 break;
             case State.Setup:
                 // Innitial turn resources
+                source.PlayOneShot(DealCards);
+                source.PlayOneShot(GiveCoins);
                 if (firstTurn)
                 {
                     playerManager.Gold += 5;

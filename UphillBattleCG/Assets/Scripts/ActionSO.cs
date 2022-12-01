@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(menuName = "CardSO/Action")]
 public class ActionSO : ScriptableObject
@@ -27,6 +28,8 @@ public class ActionSO : ScriptableObject
     public Position position;
     public bool needEmpty;
     public bool targetAmbiguous;
+
+    public AudioClip playedSound;
 
     public List<ActionFunction> FuncList = new List<ActionFunction>();
 

@@ -17,11 +17,10 @@ public abstract class Card : MonoBehaviour,
     public GameManager gameManager;
     public BoardManager boardManager;
 
-    [Header("Shield Settings")]
+    [Header("Sounds")]
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip hover;
     [SerializeField] private AudioClip startDrag;
-    [SerializeField] private AudioClip play;
 
     private void Start()
     {

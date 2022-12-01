@@ -6,6 +6,7 @@ using TMPro;
 
 public class CardUnit : Card
 {
+    [Header("Unit")]
     public UnitSO unit;
 
     // ========= Visual Componenets =========

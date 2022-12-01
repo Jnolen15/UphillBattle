@@ -21,6 +21,7 @@ MonoBehaviour:
   position: 1
   needEmpty: 0
   targetAmbiguous: 0
+  playedSound: {fileID: 8300000, guid: e60723a6427f1c04ea781bc8abfc40d3, type: 3}
   FuncList:
   - {fileID: 11400000, guid: aa3d44cccbc9f2e46ad9a7e8347778be, type: 2}
   - {fileID: 11400000, guid: 93bd420899fe4284ab637cc255a00769, type: 2}

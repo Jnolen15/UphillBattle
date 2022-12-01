@@ -1002,6 +1002,10 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   gameManager: {fileID: 0}
   boardManager: {fileID: 0}
+  source: {fileID: 1734515750599011253}
+  hover: {fileID: 8300000, guid: 0d663ae5393c7ab47b38f0d422817f07, type: 3}
+  startDrag: {fileID: 8300000, guid: 1a26cdac302e270488b720a34f2978b1, type: 3}
+  play: {fileID: 8300000, guid: 46c58ae3d7775094b8909d8cdc4197e4, type: 3}
   unit: {fileID: 0}
   cost: {fileID: 3286586323267503634}
   health: {fileID: 3286586323195460761}
