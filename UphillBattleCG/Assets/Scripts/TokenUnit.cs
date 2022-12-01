@@ -28,13 +28,14 @@ public class TokenUnit : MonoBehaviour,
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip EnemyPlayed;
     [SerializeField] private AudioClip FriendlyPlayed;
-    [SerializeField] private AudioClip startDrag;
+    [SerializeField] private AudioClip MouseOver;
 
     // ========== MOUSE CONTROLS ==========
     public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log("Hovered over " + unit.title);
         gameManager.PreviewCard(unit);
+        source.PlayOneShot(MouseOver);
     }
 
     public void OnPointerExit(PointerEventData eventData)
