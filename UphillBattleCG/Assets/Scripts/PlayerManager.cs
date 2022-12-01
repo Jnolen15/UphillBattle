@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI courageText;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI killsText;
+    [SerializeField] private GameObject hurtFlash;
     //[SerializeField] private TextMeshProUGUI deathsText;
 
     public GameObject tokenPrefab;
@@ -50,6 +51,7 @@ public class PlayerManager : MonoBehaviour
         {
             health = value;
             healthText.text = health.ToString();
+            StartCoroutine(HurtFlash());
         }
     }
     public int Kills
@@ -157,5 +159,12 @@ public class PlayerManager : MonoBehaviour
         actionData.OnPlay(tokenSpace);
 
         return true;
+    }
+
+    private IEnumerator HurtFlash()
+    {
+        hurtFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        hurtFlash.SetActive(false);
     }
 }
