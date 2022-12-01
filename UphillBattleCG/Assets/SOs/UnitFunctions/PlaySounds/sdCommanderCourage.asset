@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4436c97065f06f1458da81b5097d9f59, type: 3}
+  m_Name: sdCommanderCourage
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 7bda04409fa29bf45bc2588371776cf8, type: 3}

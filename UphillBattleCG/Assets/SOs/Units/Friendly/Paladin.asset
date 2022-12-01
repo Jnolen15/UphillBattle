@@ -28,10 +28,13 @@ MonoBehaviour:
   position: 0
   AttackList:
   - {fileID: 11400000, guid: 5e04bad5085f3394883e298b96ae4e45, type: 2}
+  - {fileID: 11400000, guid: ae0ce60ea6e30e44ca8823712d22b58d, type: 2}
   DamageList:
   - {fileID: 11400000, guid: 6a63cf10fc986274288d48088338ba7d, type: 2}
+  - {fileID: 11400000, guid: e49904821afc9224d8a0f1b8e6fd22c0, type: 2}
   PlayList: []
   OnTurnList: []
   DeathList:
   - {fileID: 11400000, guid: be635ef8e62f5b8449972d863a6bb31f, type: 2}
   - {fileID: 11400000, guid: 557a4b14b6e142f4b92934022ffca66b, type: 2}
+  - {fileID: 11400000, guid: e95aca7503c12d1419f6a53f0b1970a5, type: 2}
