@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI courageText;
     [SerializeField] private TextMeshProUGUI healthText;
-    //[SerializeField] private TextMeshProUGUI killsText;
+    [SerializeField] private TextMeshProUGUI killsText;
     //[SerializeField] private TextMeshProUGUI deathsText;
 
     public GameObject tokenPrefab;
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         set
         {
             kills = value;
-            //killsText.text = "Kills: " + kills.ToString();
+            killsText.text = kills.ToString();
         }
     }
     public int Deaths

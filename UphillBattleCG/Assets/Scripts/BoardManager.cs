@@ -183,6 +183,36 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    public int GetNumPlayers()
+    {
+        int count = 0;
+        var start = (TokenSlots.Count / 2);
+        for (int i = start; i < TokenSlots.Count; i++)
+        {
+            if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())
+            {
+                count++;
+            }
+        }
+
+        return count++;
+    }
+
+    public int GetNumEnemies()
+    {
+        int count = 0;
+        var end = (TokenSlots.Count / 2);
+        for (int i = 0; i < end; i++)
+        {
+            if (TokenSlots[i].GetComponent<TokenSlot>().HasToken())
+            {
+                count++;
+            }
+        }
+
+        return count++;
+    }
+
     public void PlayerCombat()
     {
         var start = (TokenSlots.Count / 2);

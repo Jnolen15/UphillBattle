@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private List<int> killRewards = new List<int>();
     private bool firstTurn;
-    private int lastRoundKills;
-    private int lastRoundDeaths;
 
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject cardPreview;
@@ -171,21 +169,8 @@ public class GameManager : MonoBehaviour
                 boardManager.EnemyCombat();
                 break;
             case State.Reinforce:
-                if (lastRoundKills < playerManager.Kills || lastRoundDeaths < playerManager.Deaths)
-                {
-                    var killdiff = playerManager.Kills - lastRoundKills;
-                    var deathdiff = playerManager.Deaths - lastRoundDeaths;
-                    var numEnemies = killdiff - deathdiff;
-                    if (numEnemies < 0) numEnemies = 0;
-                    Debug.Log("kills this round: " + killdiff + " Deaths this round: " + deathdiff + " number of enemies to spawn: " + numEnemies);
-                    enemyManager.PlaceEnemies(numEnemies);
-                    lastRoundKills = playerManager.Kills;
-                    lastRoundDeaths = playerManager.Deaths;
-                } else
-                {
-                    enemyManager.PlaceEnemies(1);
-                }
-                
+                enemyManager.Reinforce();
+
                 StartCoroutine(PauseTillNextState(2f));
                 break;
         }

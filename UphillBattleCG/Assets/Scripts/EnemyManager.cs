@@ -13,6 +13,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private List<UnitSO> T2BacklineEnemies = new List<UnitSO>();
     [SerializeField] private List<UnitSO> T3FrontlineEnemies = new List<UnitSO>();
     [SerializeField] private List<UnitSO> T3BacklineEnemies = new List<UnitSO>();
+    private int lastRoundKills;
+    private int lastRoundDeaths;
 
     // Need smarter place
     // More balanced picks
@@ -21,6 +23,34 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         playerManager = gameObject.GetComponent<PlayerManager>();
+    }
+
+    public void Reinforce()
+    {
+        if (lastRoundKills < playerManager.Kills || lastRoundDeaths < playerManager.Deaths)
+        {
+            var killdiff = playerManager.Kills - lastRoundKills;
+            var deathdiff = playerManager.Deaths - lastRoundDeaths;
+            var numEnemies = killdiff - deathdiff;
+            if (numEnemies < 0) numEnemies = 0;
+            if (boardManager.GetNumEnemies() < boardManager.GetNumPlayers())
+            {
+                Debug.Log("More player units than enemies, +1 enemy");
+                numEnemies++;
+            } else if (boardManager.GetNumEnemies() > boardManager.GetNumPlayers())
+            {
+                Debug.Log("More Enemies than player units, -1 enemy");
+                numEnemies--;
+            }
+            Debug.Log("kills this round: " + killdiff + " Deaths this round: " + deathdiff + " number of enemies to spawn: " + numEnemies);
+            PlaceEnemies(numEnemies);
+            lastRoundKills = playerManager.Kills;
+            lastRoundDeaths = playerManager.Deaths;
+        }
+        else
+        {
+            PlaceEnemies(1);
+        }
     }
 
     public void PlaceEnemies(int num)
