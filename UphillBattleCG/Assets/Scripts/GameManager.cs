@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject ulockOption2;
     private bool hadFirstUpgrde;
     private bool hadSecondUpgrde;
+    private bool wonGame;
 
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip DealCards;
@@ -60,8 +61,9 @@ public class GameManager : MonoBehaviour
         }
 
         // Wait for Win
-        if (playerManager.Kills >= 30)
+        if (playerManager.Kills >= 30 && !wonGame)
         {
+            wonGame = true;
             WinGame();
         }
     }
